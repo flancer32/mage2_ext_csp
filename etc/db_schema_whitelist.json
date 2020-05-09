@@ -1,0 +1,26 @@
+{
+    "fl32_csp_report": {
+        "column": {
+            "id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "fl32_csp_policy": {
+        "column": {
+            "id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "fl32_csp_type_policy": {
+        "column": {
+            "id": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

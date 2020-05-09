@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="fl32_csp_report" resource="default" engine="innodb"
+           comment="CSP reports storage.">
+        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Item ID"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="fl32_csp_policy" resource="default" engine="innodb"
+           comment="CSP policy rules.">
+        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Rule ID"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+    <table name="fl32_csp_type_policy" resource="default" engine="innodb"
+           comment="Policy type (script-src, style-src, ...).">
+        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Rule ID"/>
+        <constraint referenceId="PRIMARY" xsi:type="primary">
+            <column name="id"/>
+        </constraint>
+    </table>
+
+</schema>
