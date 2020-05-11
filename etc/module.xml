@@ -5,6 +5,7 @@
     <module name="Flancer32_Csp" setup_version="0.1.0">
         <sequence>
             <module name="Magento_Csp"/>
+            <module name="Flancer32_Base"/>
         </sequence>
     </module>
 </config>

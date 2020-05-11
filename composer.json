@@ -1,21 +1,23 @@
 {
-  "name": "flancer32/mage2_ext_csp",
-  "description": "Magento2: Content Security Policies reporter.",
-  "type": "magento2-module",
-  "homepage": "https://github.com/flancer32/mage2_ext_csp",
-  "license": "GPL-3.0-only",
-  "authors": [
-    {
-      "name": "Alex Gusev", "email": "alex@flancer64.com"
-    }
-  ],
-  "require": {},
-  "autoload": {
-    "files": [
-      "registration.php"
+    "name": "flancer32/mage2_ext_csp",
+    "description": "Magento2: Content Security Policies reporter.",
+    "type": "magento2-module",
+    "homepage": "https://github.com/flancer32/mage2_ext_csp",
+    "license": "GPL-3.0-only",
+    "authors": [
+        {
+            "name": "Alex Gusev", "email": "alex@flancer64.com"
+        }
     ],
-    "psr-4": {
-      "Flancer32\\Csp\\": ""
+    "require": {
+        "flancer32/mage2_ext_base": "^0.2"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Flancer32\\Csp\\": ""
+        }
     }
-  }
 }

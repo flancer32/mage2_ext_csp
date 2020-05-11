@@ -9,8 +9,6 @@ namespace Flancer32\Csp\Controller\Report;
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
-use Magento\Framework\App\Response\HttpFactory;
-use Psr\Log\LoggerInterface;
 
 class Index
     extends \Magento\Framework\App\Action\Action
@@ -22,15 +20,19 @@ class Index
     private $logger;
     /** @var \Magento\Framework\App\Response\HttpFactory */
     private $factHttpResponse;
+    /** @var \Flancer32\Csp\Service\Report\Save */
+    private $srvReportSave;
 
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        LoggerInterface $logger,
-        HttpFactory $factHttpResponse
+        \Psr\Log\LoggerInterface $logger,
+        \Magento\Framework\App\Response\HttpFactory $factHttpResponse,
+        \Flancer32\Csp\Service\Report\Save $srvReportSave
     ) {
         parent::__construct($context);
         $this->logger = $logger;
         $this->factHttpResponse = $factHttpResponse;
+        $this->srvReportSave = $srvReportSave;
     }
 
     public function execute()
@@ -38,8 +40,11 @@ class Index
         // Read POSTed data and convert it into PHP object.
         $rawBody = file_get_contents('php://input');
         $data = json_decode($rawBody);
-        $this->logger->debug("CSP report: $rawBody");
-
+        if (isset($data->{'csp-report'})) {
+            $req = new \Flancer32\Csp\Service\Report\Save\Request();
+            $req->setReport($data->{'csp-report'});
+            $this->srvReportSave->execute($req);
+        }
         // ... then create response
         /** @var \Magento\Framework\App\Response\Http $result */
         $result = $this->factHttpResponse->create();
