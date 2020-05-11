@@ -19,4 +19,13 @@
                 sortOrder="100" disabled="false"/>
     </type>
 
+
+    <type name="Magento\Csp\Model\CompositePolicyCollector">
+        <arguments>
+            <argument name="collectors" xsi:type="array">
+                <item name="500" xsi:type="object">Flancer32\Csp\Model\Collector\Db</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>
