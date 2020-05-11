@@ -3,5 +3,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <module name="Flancer32_Csp" setup_version="0.1.0">
+        <sequence>
+            <module name="Magento_Csp"/>
+        </sequence>
     </module>
 </config>
