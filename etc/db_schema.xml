@@ -26,10 +26,15 @@
 
     <table name="fl32_csp_type_policy" resource="default" engine="innodb"
            comment="Policy type (script-src, style-src, ...).">
-        <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
-                comment="Rule ID"/>
+        <column name="id" xsi:type="int" nullable="false" identity="true"
+                comment="Type ID"/>
+        <column name="key" xsi:type="varchar" nullable="false"
+                comment="Type value."/>
         <constraint referenceId="PRIMARY" xsi:type="primary">
             <column name="id"/>
+        </constraint>
+        <constraint referenceId="UQ_TYPE_KEY"  xsi:type="unique" >
+            <column name="key"/>
         </constraint>
     </table>
 

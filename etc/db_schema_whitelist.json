@@ -1,7 +1,9 @@
 {
     "fl32_csp_report": {
         "column": {
-            "id": true
+            "id": true,
+            "date": true,
+            "report": true
         },
         "constraint": {
             "PRIMARY": true
@@ -17,10 +19,12 @@
     },
     "fl32_csp_type_policy": {
         "column": {
-            "id": true
+            "id": true,
+            "key": true
         },
         "constraint": {
-            "PRIMARY": true
+            "PRIMARY": true,
+            "FL32_CSP_TYPE_POLICY_KEY": true
         }
     }
 }

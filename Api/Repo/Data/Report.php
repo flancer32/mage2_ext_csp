@@ -7,7 +7,7 @@
 namespace Flancer32\Csp\Api\Repo\Data;
 
 /**
- * Log for login events.
+ * CSP violations reports (raw data).
  */
 class Report
     extends \Magento\Framework\DataObject

@@ -4,20 +4,20 @@
  * Since: 2020
  */
 
-namespace Flancer32\Csp\Api\Repo\Dao;
+namespace Flancer32\Csp\Api\Repo\Dao\Type;
 
-use Flancer32\Csp\Api\Repo\Data\Report as Entity;
+use Flancer32\Csp\Api\Repo\Data\Type\Policy as Entity;
 
 /**
- * CSP violations reports (raw data).
+ * CSP policy types codifier.
  */
-interface Report
+interface Policy
     extends \Flancer32\Base\Api\Repo\Dao\Entity
 {
     /** Entity class name to construct data objects in result set. */
     const ENTITY_CLASS = Entity::class;
     /** Database table name. */
-    const ENTITY_NAME = 'fl32_csp_report';
+    const ENTITY_NAME = 'fl32_csp_type_policy';
     /** Primary key attributes. */
     const ENTITY_PK = [Entity::ID];
 

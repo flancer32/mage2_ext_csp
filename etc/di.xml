@@ -5,6 +5,8 @@
     <!-- ******* -->
     <!-- API DAO -->
     <!-- ******* -->
+    <preference for="Flancer32\Csp\Api\Repo\Dao\Type\Policy"
+                type="Flancer32\Csp\Repo\Dao\Type\Policy"/>
     <preference for="Flancer32\Csp\Api\Repo\Dao\Report"
                 type="Flancer32\Csp\Repo\Dao\Report"/>
 
