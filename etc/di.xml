@@ -2,10 +2,15 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
 
-    <!-- ******* -->
-    <!-- API Web -->
-    <!-- ******* -->
-    <preference for="Flancer32\Csp\Api\Web\ReportInterface"
-                type="Flancer32\Csp\Api\Web\Report"/>
+    <!-- ******************** -->
+    <!-- Plugins/Interceptors -->
+    <!-- ******************** -->
+
+    <type name="Magento\Csp\Observer\Render">
+        <!-- Clean up headers after Magento processing of CSP (report-uri is deprecated but works). -->
+        <plugin name="fl32_csp_plugin"
+                type="Flancer32\Csp\Plugin\Magento\Csp\Observer\Render"
+                sortOrder="100" disabled="false"/>
+    </type>
 
 </config>
