@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Authors: Alex Gusev <alex@flancer64.com>
+ * Since: 2020
+ */
 
 namespace Flancer32\Csp\Plugin\Magento\Csp\Observer;
 
@@ -28,7 +31,7 @@ class Render
         // TODO: we should get 'Content-Security-Policy-Report-Only' or 'Content-Security-Policy'
         $cspHeader = $response->getHeader('Content-Security-Policy-Report-Only');
         $value = $cspHeader->getFieldValue();
-        str_replace('report-to report-endpoint;', '', $value);
+        $value = str_replace('report-to report-endpoint;', '', $value);
         $response->setHeader('Content-Security-Policy-Report-Only', $value);
     }
 }
