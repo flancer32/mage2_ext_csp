@@ -11,10 +11,15 @@
     },
     "fl32_csp_policy": {
         "column": {
-            "id": true
+            "id": true,
+            "enabled": true,
+            "admin_area": true,
+            "type_id": true,
+            "source": true
         },
         "constraint": {
-            "PRIMARY": true
+            "PRIMARY": true,
+            "FL32_CSP_POLICY_TYPE_ID_FL32_CSP_TYPE_POLICY_ID": true
         }
     },
     "fl32_csp_type_policy": {

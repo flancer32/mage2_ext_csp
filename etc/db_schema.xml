@@ -5,7 +5,7 @@
     <table name="fl32_csp_report" resource="default" engine="innodb"
            comment="CSP reports storage.">
         <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
-                comment="Item ID"/>
+                comment="Item ID."/>
         <column name="date" xsi:type="datetime" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Report registration date."/>
         <column name="report" xsi:type="text" nullable="false"
@@ -18,22 +18,33 @@
     <table name="fl32_csp_policy" resource="default" engine="innodb"
            comment="CSP policy rules.">
         <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
-                comment="Rule ID"/>
+                comment="Rule ID."/>
+        <column name="enabled" xsi:type="boolean" default="false" nullable="false"
+                comment="Is policy rule enabled?"/>
+        <column name="admin_area" xsi:type="boolean" default="false" nullable="false"
+                comment="Is policy rule applied to admin or storefront area?"/>
+        <column name="type_id" xsi:type="tinyint" unsigned="true" nullable="false"
+                comment="Policy type ID."/>
+        <column name="source" xsi:type="varchar" nullable="false"
+                comment="Source value (schema, URL, hash, ...)."/>
         <constraint referenceId="PRIMARY" xsi:type="primary">
             <column name="id"/>
         </constraint>
+        <constraint referenceId="FK_TYPE_KEY" xsi:type="foreign"
+                    table="fl32_csp_policy" referenceTable="fl32_csp_type_policy"
+                    column="type_id" referenceColumn="id" onDelete="CASCADE"/>
     </table>
 
     <table name="fl32_csp_type_policy" resource="default" engine="innodb"
            comment="Policy type (script-src, style-src, ...).">
-        <column name="id" xsi:type="int" nullable="false" identity="true"
-                comment="Type ID"/>
+        <column name="id" xsi:type="tinyint" unsigned="true" nullable="false" identity="true"
+                comment="Policy type ID."/>
         <column name="key" xsi:type="varchar" nullable="false"
                 comment="Type value."/>
         <constraint referenceId="PRIMARY" xsi:type="primary">
             <column name="id"/>
         </constraint>
-        <constraint referenceId="UQ_TYPE_KEY"  xsi:type="unique" >
+        <constraint referenceId="UQ_TYPE_KEY" xsi:type="unique">
             <column name="key"/>
         </constraint>
     </table>
