@@ -6,8 +6,10 @@
 
 namespace Flancer32\Csp\Service\Report;
 
-
-class Save
+/**
+ * Analyze CSP violations reports saved in DB and compose policy rules.
+ */
+class Analyze
 {
     /** @var \Flancer32\Csp\Api\Repo\Dao\Report */
     private $repoReport;

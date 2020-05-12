@@ -10,6 +10,17 @@
     <preference for="Flancer32\Csp\Api\Repo\Dao\Report"
                 type="Flancer32\Csp\Repo\Dao\Report"/>
 
+    <!-- ********************** -->
+    <!-- Console (CLI Commands) -->
+    <!-- ********************** -->
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="fl32_csp_analyze" xsi:type="object">Flancer32\Csp\Cli\Analyze</item>
+            </argument>
+        </arguments>
+    </type>
+
     <!-- ******************** -->
     <!-- Plugins/Interceptors -->
     <!-- ******************** -->
