@@ -15,7 +15,7 @@
         </constraint>
     </table>
 
-    <table name="fl32_csp_policy" resource="default" engine="innodb"
+    <table name="fl32_csp_rule" resource="default" engine="innodb"
            comment="CSP policy rules.">
         <column name="id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="true"
                 comment="Rule ID."/>
@@ -31,7 +31,7 @@
             <column name="id"/>
         </constraint>
         <constraint referenceId="FK_TYPE_KEY" xsi:type="foreign"
-                    table="fl32_csp_policy" referenceTable="fl32_csp_type_policy"
+                    table="fl32_csp_rule" referenceTable="fl32_csp_type_policy"
                     column="type_id" referenceColumn="id" onDelete="CASCADE"/>
     </table>
 

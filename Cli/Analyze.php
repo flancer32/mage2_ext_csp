@@ -17,10 +17,14 @@ class Analyze
 {
     private const DESC = 'Analyze CSP violation reports and compose policy rules.';
     private const NAME = 'fl32:csp:analyze';
+    /** @var \Flancer32\Csp\Service\Report\Analyze */
+    private $srvAnalyze;
 
-    public function __construct()
-    {
+    public function __construct(
+        \Flancer32\Csp\Service\Report\Analyze $srvAnalyze
+    ) {
         parent::__construct(self::NAME, self::DESC);
+        $this->srvAnalyze = $srvAnalyze;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -29,7 +33,8 @@ class Analyze
 
         $output->writeln("<info>Command '" . $this->getName() . "': " . $this->getDescription() . "<info>");
         $this->checkAreaCode();
-
+        $req = new \Flancer32\Csp\Service\Report\Analyze\Request();
+        $resp = $this->srvAnalyze->execute($req);
         $output->writeln('<info>Command \'' . $this->getName() . '\' is completed.<info>');
     }
 

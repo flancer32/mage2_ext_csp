@@ -31,5 +31,18 @@
             "PRIMARY": true,
             "FL32_CSP_TYPE_POLICY_KEY": true
         }
+    },
+    "fl32_csp_rule": {
+        "column": {
+            "id": true,
+            "enabled": true,
+            "admin_area": true,
+            "type_id": true,
+            "source": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FL32_CSP_RULE_TYPE_ID_FL32_CSP_TYPE_POLICY_ID": true
+        }
     }
 }

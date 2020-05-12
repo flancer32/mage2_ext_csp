@@ -9,6 +9,8 @@
                 type="Flancer32\Csp\Repo\Dao\Type\Policy"/>
     <preference for="Flancer32\Csp\Api\Repo\Dao\Report"
                 type="Flancer32\Csp\Repo\Dao\Report"/>
+    <preference for="Flancer32\Csp\Api\Repo\Dao\Rule"
+                type="Flancer32\Csp\Repo\Dao\Rule"/>
 
     <!-- ********************** -->
     <!-- Console (CLI Commands) -->

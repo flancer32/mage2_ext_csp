@@ -10,12 +10,12 @@ namespace Flancer32\Csp\Service\Report;
 class Save
 {
     /** @var \Flancer32\Csp\Api\Repo\Dao\Report */
-    private $repoReport;
+    private $daoReport;
 
     public function __construct(
-        \Flancer32\Csp\Api\Repo\Dao\Report $repoReport
+        \Flancer32\Csp\Api\Repo\Dao\Report $daoReport
     ) {
-        $this->repoReport = $repoReport;
+        $this->daoReport = $daoReport;
     }
 
     /**
@@ -39,6 +39,6 @@ class Save
     {
         $report = new \Flancer32\Csp\Api\Repo\Data\Report();
         $report->setReport($json);
-        $this->repoReport->create($report);
+        $this->daoReport->create($report);
     }
 }
