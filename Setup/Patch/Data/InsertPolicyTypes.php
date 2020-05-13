@@ -5,6 +5,7 @@
  */
 
 namespace Flancer32\Csp\Setup\Patch\Data;
+use Flancer32\Csp\Config as Cfg;
 
 /**
  * Add policy types to codifier.
@@ -32,12 +33,25 @@ class InsertPolicyTypes
 
     public function apply()
     {
-        foreach (\Magento\Csp\Model\Policy\FetchPolicy::POLICIES as $one) {
+        $directives = $this->getDirectives();
+        foreach ($directives as $one) {
             $data = new \Flancer32\Csp\Api\Repo\Data\Type\Policy();
             $key = trim(strtolower($one));
             $data->setKey($key);
             $this->daoTypePolicy->create($data);
         }
+    }
+
+    /**
+     * @return array CSP directives to save in 'fl32_csp_type_policy'
+     */
+    private function getDirectives()
+    {
+        $mage = \Magento\Csp\Model\Policy\FetchPolicy::POLICIES;
+        $own = Cfg::CSP_DIRECTIVES;
+        $merged = array_merge($own, $mage);
+        $result = array_unique($merged);
+        return $result;
     }
 
     public function getAliases()
