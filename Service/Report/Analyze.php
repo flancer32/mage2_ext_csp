@@ -37,9 +37,11 @@ class Analyze
 
     /**
      * @param ERule[] $rules
+     * @return int
      */
     private function addRules($rules)
     {
+        $result = 0;
         foreach ($rules as $rule) {
             $rule->setEnabled(true);
             $id = $this->daoRule->create($rule);
@@ -47,8 +49,41 @@ class Analyze
                 $type = $rule->getTypeId();
                 $source = $rule->getSource();
                 $this->logger->debug("New CSP rule #$id is added: $type:$source.");
+                $result++;
             }
         }
+        return $result;
+    }
+
+    /**
+     * Delete processed reports from DB.
+     *
+     * @param EReport[] $reports
+     * @return array
+     */
+    private function clearReports($reports)
+    {
+        $minId = PHP_INT_MAX;
+        $maxId = $deleted = 0;
+        foreach ($reports as $one) {
+            $id = $one->getId();
+            if ($id < $minId) {
+                $minId = $id;
+            }
+            if ($id > $maxId) {
+                $maxId = $id;
+            }
+        }
+        if ($minId <= $maxId) {
+            $byMin = EReport::ID . '>=' . (int)$minId;
+            $byMax = EReport::ID . '<=' . (int)$maxId;
+            $deleted = $this->daoReport->deleteSet("($byMin) AND ($byMax)");
+            $this->logger->debug("Total '$deleted' reports were deleted (id: $minId-$maxId).");
+        } else {
+            // there are no reports at all
+            $minId = $maxId;
+        }
+        return [$deleted, $minId, $maxId];
     }
 
     /**
@@ -130,7 +165,12 @@ class Analyze
         $rulesToAdd = $this->convertReportsToRules($reports, $types);
         $rulesExist = $this->getRulesExist();
         $rulesNew = $this->compareRules($rulesToAdd, $rulesExist);
-        $this->addRules($rulesNew);
+        $added = $this->addRules($rulesNew);
+        [$deleted, $minId, $maxId] = $this->clearReports($reports);
+        $result->setRulesAdded($added);
+        $result->setReportsDeleted($deleted);
+        $result->setReportsIdMin($minId);
+        $result->setReportsIdMax($maxId);
         return $result;
     }
 

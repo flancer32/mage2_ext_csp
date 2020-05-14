@@ -17,13 +17,18 @@ class Analyze
 {
     private const DESC = 'Analyze CSP violation reports and compose policy rules.';
     private const NAME = 'fl32:csp:analyze';
+
+    /** @var \Magento\Framework\App\ResourceConnection */
+    private $resource;
     /** @var \Flancer32\Csp\Service\Report\Analyze */
     private $srvAnalyze;
 
     public function __construct(
+        \Magento\Framework\App\ResourceConnection $resource,
         \Flancer32\Csp\Service\Report\Analyze $srvAnalyze
     ) {
         parent::__construct(self::NAME, self::DESC);
+        $this->resource = $resource;
         $this->srvAnalyze = $srvAnalyze;
     }
 
@@ -33,8 +38,16 @@ class Analyze
 
         $output->writeln("<info>Command '" . $this->getName() . "': " . $this->getDescription() . "<info>");
         $this->checkAreaCode();
+        $conn = $this->resource->getConnection();
+        $conn->beginTransaction();
         $req = new \Flancer32\Csp\Service\Report\Analyze\Request();
         $resp = $this->srvAnalyze->execute($req);
+        $conn->commit();
+        $added = $resp->getRulesAdded();
+        $deleted = $resp->getReportsDeleted();
+        $min = $resp->getReportsIdMin();
+        $max = $resp->getReportsIdMax();
+        $output->writeln("<info>$added rules were added. $deleted reports were deleted (id: $min-$max).<info>");
         $output->writeln('<info>Command \'' . $this->getName() . '\' is completed.<info>');
     }
 

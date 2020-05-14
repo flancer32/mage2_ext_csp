@@ -24,15 +24,6 @@ class Report
         return $result;
     }
 
-    /**
-     * @param boolean $data
-     * @return void
-     */
-    public function setAdminArea($data)
-    {
-        parent::setData(self::ADMIN_AREA, $data);
-    }
-
     /** @return string */
     public function getDate()
     {
@@ -52,6 +43,15 @@ class Report
     {
         $result = (string)parent::getData(self::REPORT);
         return $result;
+    }
+
+    /**
+     * @param boolean $data
+     * @return void
+     */
+    public function setAdminArea($data)
+    {
+        parent::setData(self::ADMIN_AREA, $data);
     }
 
     /**

@@ -5,6 +5,7 @@
  */
 
 namespace Flancer32\Csp\Setup\Patch\Data;
+
 use Flancer32\Csp\Config as Cfg;
 
 /**
@@ -42,6 +43,16 @@ class InsertPolicyTypes
         }
     }
 
+    public function getAliases()
+    {
+        return [];
+    }
+
+    public static function getDependencies()
+    {
+        return [];
+    }
+
     /**
      * @return array CSP directives to save in 'fl32_csp_type_policy'
      */
@@ -52,15 +63,5 @@ class InsertPolicyTypes
         $merged = array_merge($own, $mage);
         $result = array_unique($merged);
         return $result;
-    }
-
-    public function getAliases()
-    {
-        return [];
-    }
-
-    public static function getDependencies()
-    {
-        return [];
     }
 }

@@ -5,6 +5,7 @@
  */
 
 namespace Flancer32\Csp\Model\Collector;
+
 use Flancer32\Csp\Model\Collector\Db\A\Query\GetRules as QGetRules;
 
 /**
@@ -13,9 +14,6 @@ use Flancer32\Csp\Model\Collector\Db\A\Query\GetRules as QGetRules;
 class Db
     implements \Magento\Csp\Api\PolicyCollectorInterface
 {
-    /** @var \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules */
-    private $aQGetRules;
-
     /**
      * We should not ise use CSP Level 3 directives to prevent "Refused to execute inline script ..." warnings
      */
@@ -25,6 +23,8 @@ class Db
         'style-src-attr' => 'style-src',
         'style-src-elem' => 'style-src',
     ];
+    /** @var \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules */
+    private $aQGetRules;
 
     public function __construct(
         \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules $aQGetRules
