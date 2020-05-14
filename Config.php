@@ -41,4 +41,7 @@ class Config
     const MODULE = self::MODULE_VENDOR . '_' . self::MODULE_PACKAGE;
     const MODULE_PACKAGE = 'Csp';
     const MODULE_VENDOR = 'Flancer32';
+
+    const ROUTE_BASE = 'fl32csp';
+    const ROUTE_REPORT = self::ROUTE_BASE . '/report';
 }

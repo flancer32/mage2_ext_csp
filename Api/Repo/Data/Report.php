@@ -12,9 +12,26 @@ namespace Flancer32\Csp\Api\Repo\Data;
 class Report
     extends \Magento\Framework\DataObject
 {
+    const ADMIN_AREA = 'admin_area';
     const DATE = 'date';
     const ID = 'id';
     const REPORT = 'report';
+
+    /** @return boolean */
+    public function getAdminArea()
+    {
+        $result = (boolean)parent::getData(self::ADMIN_AREA);
+        return $result;
+    }
+
+    /**
+     * @param boolean $data
+     * @return void
+     */
+    public function setAdminArea($data)
+    {
+        parent::setData(self::ADMIN_AREA, $data);
+    }
 
     /** @return string */
     public function getDate()

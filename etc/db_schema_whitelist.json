@@ -3,7 +3,8 @@
         "column": {
             "id": true,
             "date": true,
-            "report": true
+            "report": true,
+            "admin_area": true
         },
         "constraint": {
             "PRIMARY": true

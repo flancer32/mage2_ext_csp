@@ -4,32 +4,44 @@
  * Since: 2020
  */
 
-namespace Flancer32\Csp\Controller\Report;
+namespace Flancer32\Csp\Controller\Adminhtml\Report;
 
 use Magento\Framework\App\CsrfAwareActionInterface;
 use Magento\Framework\App\Request\InvalidRequestException;
 use Magento\Framework\App\RequestInterface;
 
 class Index
-    extends \Magento\Framework\App\Action\Action
+    extends \Magento\Backend\App\Action
     implements CsrfAwareActionInterface
 {
     const HTTP_NO_CONTENT = 204;
-
     /** @var \Magento\Framework\App\Response\HttpFactory */
     private $factHttpResponse;
     /** @var \Flancer32\Csp\Service\Report\Save */
     private $srvReportSave;
 
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Psr\Log\LoggerInterface $logger,
+        \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Response\HttpFactory $factHttpResponse,
         \Flancer32\Csp\Service\Report\Save $srvReportSave
     ) {
         parent::__construct($context);
         $this->factHttpResponse = $factHttpResponse;
         $this->srvReportSave = $srvReportSave;
+    }
+
+    /**
+     * Override validation method for POSTs. Any authenticated user is accepted.
+     *
+     * @inheritDoc
+     */
+    public function _processUrlKeys()
+    {
+        $result = false;
+        if ($this->_auth->isLoggedIn()) {
+            $result = true;
+        }
+        return $result;
     }
 
     public function createCsrfValidationException(RequestInterface $request): ?InvalidRequestException
@@ -44,7 +56,7 @@ class Index
         $data = json_decode($rawBody);
         if (isset($data->{'csp-report'})) {
             $req = new \Flancer32\Csp\Service\Report\Save\Request();
-            $req->setIsAdmin(false);
+            $req->setIsAdmin(true);
             $req->setReport($data->{'csp-report'});
             $this->srvReportSave->execute($req);
         }

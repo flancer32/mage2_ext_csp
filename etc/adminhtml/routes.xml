@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <!-- Route ID should be equal to front name: https://github.com/magento/magento2/issues/7557 -->
+        <route id="fl32csp" frontName="fl32csp">
+            <module name="Flancer32_Csp"/>
+        </route>
+    </router>
+</config>

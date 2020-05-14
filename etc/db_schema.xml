@@ -8,6 +8,8 @@
                 comment="Item ID."/>
         <column name="date" xsi:type="datetime" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
                 comment="Report registration date."/>
+        <column name="admin_area" xsi:type="boolean" default="false" nullable="false"
+                comment="Is report received in admin or storefront area?"/>
         <column name="report" xsi:type="text" nullable="false"
                 comment="Report's raw data."/>
         <constraint referenceId="PRIMARY" xsi:type="primary">
