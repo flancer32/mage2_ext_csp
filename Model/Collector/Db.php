@@ -16,6 +16,16 @@ class Db
     /** @var \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules */
     private $aQGetRules;
 
+    /**
+     * We should not ise use CSP Level 3 directives to prevent "Refused to execute inline script ..." warnings
+     */
+    private const MAP_LEVEL3_TO_LEVEL2 = [
+        'script-src-attr' => 'script-src',
+        'script-src-elem' => 'script-src',
+        'style-src-attr' => 'style-src',
+        'style-src-elem' => 'style-src',
+    ];
+
     public function __construct(
         \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules $aQGetRules
     ) {
@@ -38,7 +48,16 @@ class Db
     {
         $query = $this->aQGetRules->build();
         $conn = $query->getConnection();
-        $result = $conn->fetchAll($query);
+        $all = $conn->fetchAll($query);
+        // map Level 3 directives to Level 2.
+        $result = [];
+        foreach ($all as $one) {
+            $id = $one[QGetRules::A_TYPE];
+            if (isset(self::MAP_LEVEL3_TO_LEVEL2[$id])) {
+                $one[QGetRules::A_TYPE] = self::MAP_LEVEL3_TO_LEVEL2[$id];
+            }
+            $result[] = $one;
+        }
         return $result;
     }
 }
