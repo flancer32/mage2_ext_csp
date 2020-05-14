@@ -32,6 +32,11 @@
         <constraint referenceId="PRIMARY" xsi:type="primary">
             <column name="id"/>
         </constraint>
+        <constraint referenceId="UQ_RULE" xsi:type="unique">
+            <column name="admin_area"/>
+            <column name="type_id"/>
+            <column name="source"/>
+        </constraint>
         <constraint referenceId="FK_TYPE_KEY" xsi:type="foreign"
                     table="fl32_csp_rule" referenceTable="fl32_csp_type_policy"
                     column="type_id" referenceColumn="id" onDelete="CASCADE"/>

@@ -43,7 +43,8 @@
         },
         "constraint": {
             "PRIMARY": true,
-            "FL32_CSP_RULE_TYPE_ID_FL32_CSP_TYPE_POLICY_ID": true
+            "FL32_CSP_RULE_TYPE_ID_FL32_CSP_TYPE_POLICY_ID": true,
+            "FL32_CSP_RULE_ADMIN_AREA_TYPE_ID_SOURCE": true
         }
     }
 }
