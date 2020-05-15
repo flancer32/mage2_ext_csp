@@ -25,21 +25,27 @@ class Db
     ];
     /** @var \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules */
     private $aQGetRules;
+    /** @var \Flancer32\Csp\Helper\Config */
+    private $hlpCfg;
 
     public function __construct(
+        \Flancer32\Csp\Helper\Config $hlpCfg,
         \Flancer32\Csp\Model\Collector\Db\A\Query\GetRules $aQGetRules
     ) {
+        $this->hlpCfg = $hlpCfg;
         $this->aQGetRules = $aQGetRules;
     }
 
     public function collect(array $defaultPolicies = []): array
     {
-        $rules = $this->getRules();
-        foreach ($rules as $rule) {
-            $id = $rule[QGetRules::A_TYPE];
-            $source = $rule[QGetRules::A_SOURCE];
-            $policy = new \Magento\Csp\Model\Policy\FetchPolicy($id, false, [$source]);
-            $defaultPolicies[] = $policy;
+        if ($this->hlpCfg->getEnabled()) {
+            $rules = $this->getRules();
+            foreach ($rules as $rule) {
+                $id = $rule[QGetRules::A_TYPE];
+                $source = $rule[QGetRules::A_SOURCE];
+                $policy = new \Magento\Csp\Model\Policy\FetchPolicy($id, false, [$source]);
+                $defaultPolicies[] = $policy;
+            }
         }
         return $defaultPolicies;
     }

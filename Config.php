@@ -37,6 +37,9 @@ class Config
         'worker-src'
     ];
 
+    const HTTP_HEAD_CSP = 'Content-Security-Policy';
+    const HTTP_HEAD_CSP_REPORT_ONLY = 'Content-Security-Policy-Report-Only';
+
     /** This module name. */
     const MODULE = self::MODULE_VENDOR . '_' . self::MODULE_PACKAGE;
     const MODULE_PACKAGE = 'Csp';

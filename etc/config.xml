@@ -5,14 +5,26 @@
         <csp>
             <mode>
                 <storefront>
-<!--                    <report_only>0</report_only>-->
-<!--                    <report_uri>/fl32csp/report</report_uri>-->
+                    <!--                    <report_only>0</report_only>-->
+                    <!--                    <report_uri>/fl32csp/report</report_uri>-->
                 </storefront>
                 <admin>
-<!--                    <report_only>0</report_only>-->
-<!--                    <report_uri>/fl32csp/report</report_uri>-->
+                    <report_only>0</report_only>
+                    <report_uri>/fl32csp/boo</report_uri>
                 </admin>
             </mode>
         </csp>
+        <fl32_csp>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <cron>
+                <enabled>1</enabled>
+            </cron>
+            <rules>
+                <new_rules_active>1</new_rules_active>
+                <report_only>1</report_only>
+            </rules>
+        </fl32_csp>
     </default>
 </config>

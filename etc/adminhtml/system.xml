@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<config
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="fl32_csp" translate="label" type="text" sortOrder="610"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>CSP</label>
+            <tab>security</tab>
+            <resource>Flancer32_Csp::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="100"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Enable <a href="https://github.com/flancer32/mage2_ext_csp" target="_blank">'Flancer32_Csp'</a>  module.]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="cron" translate="label" type="text" sortOrder="200"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cron</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Run processing of CSP violation reports and create new rules by cron (hourly).</comment>
+                    <tooltip>You can siwtch off cron and run processing manually using CLI: ./bin/magento
+                        fl32:csp:analyze
+                    </tooltip>
+                </field>
+                <depends>
+                    <field id="fl32_csp/general/enabled">1</field>
+                </depends>
+            </group>
+            <group id="rules" translate="label" type="text" sortOrder="300"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Rules</label>
+                <field id="new_rules_active" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Activate New Rules</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Enable new rules by default.</comment>
+                </field>
+                <field id="report_only" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Report Only</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Just report about CSP violations (Content-Security-Policy-Report-Only). Otherwise,
+                        restricted content will be denied (Content-Security-Policy).
+                    </comment>
+                </field>
+                <depends>
+                    <field id="fl32_csp/general/enabled">1</field>
+                </depends>
+            </group>
+        </section>
+
+    </system>
+</config>

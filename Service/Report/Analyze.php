@@ -20,6 +20,8 @@ class Analyze
     private $daoRule;
     /** @var \Flancer32\Csp\Api\Repo\Dao\Type\Policy */
     private $daoTypePolicy;
+    /** @var \Flancer32\Csp\Helper\Config */
+    private $hlpCfg;
     /** @var \Psr\Log\LoggerInterface */
     private $logger;
 
@@ -27,23 +29,26 @@ class Analyze
         \Psr\Log\LoggerInterface $logger,
         \Flancer32\Csp\Api\Repo\Dao\Report $daoReport,
         \Flancer32\Csp\Api\Repo\Dao\Rule $daoRule,
-        \Flancer32\Csp\Api\Repo\Dao\Type\Policy $daoTypePolicy
+        \Flancer32\Csp\Api\Repo\Dao\Type\Policy $daoTypePolicy,
+        \Flancer32\Csp\Helper\Config $hlpCfg
     ) {
         $this->logger = $logger;
         $this->daoReport = $daoReport;
         $this->daoRule = $daoRule;
         $this->daoTypePolicy = $daoTypePolicy;
+        $this->hlpCfg = $hlpCfg;
     }
 
     /**
      * @param ERule[] $rules
+     * @param boolean $enabled
      * @return int
      */
-    private function addRules($rules)
+    private function addRules($rules, $enabled)
     {
         $result = 0;
         foreach ($rules as $rule) {
-            $rule->setEnabled(true);
+            $rule->setEnabled($enabled);
             $id = $this->daoRule->create($rule);
             if ($id) {
                 $type = $rule->getTypeId();
@@ -165,7 +170,8 @@ class Analyze
         $rulesToAdd = $this->convertReportsToRules($reports, $types);
         $rulesExist = $this->getRulesExist();
         $rulesNew = $this->compareRules($rulesToAdd, $rulesExist);
-        $added = $this->addRules($rulesNew);
+        $enabled = $this->hlpCfg->getRulesNewAreActive();
+        $added = $this->addRules($rulesNew, $enabled);
         [$deleted, $minId, $maxId] = $this->clearReports($reports);
         $result->setRulesAdded($added);
         $result->setReportsDeleted($deleted);

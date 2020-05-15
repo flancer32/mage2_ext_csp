@@ -17,16 +17,20 @@ class Index
     const HTTP_NO_CONTENT = 204;
     /** @var \Magento\Framework\App\Response\HttpFactory */
     private $factHttpResponse;
+    /** @var \Flancer32\Csp\Helper\Config */
+    private $hlpCfg;
     /** @var \Flancer32\Csp\Service\Report\Save */
     private $srvReportSave;
 
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\App\Response\HttpFactory $factHttpResponse,
+        \Flancer32\Csp\Helper\Config $hlpCfg,
         \Flancer32\Csp\Service\Report\Save $srvReportSave
     ) {
         parent::__construct($context);
         $this->factHttpResponse = $factHttpResponse;
+        $this->hlpCfg = $hlpCfg;
         $this->srvReportSave = $srvReportSave;
     }
 
@@ -51,16 +55,18 @@ class Index
 
     public function execute()
     {
-        // Read POSTed data and convert it into PHP object.
-        $rawBody = file_get_contents('php://input');
-        $data = json_decode($rawBody);
-        if (isset($data->{'csp-report'})) {
-            $req = new \Flancer32\Csp\Service\Report\Save\Request();
-            $req->setIsAdmin(true);
-            $req->setReport($data->{'csp-report'});
-            $this->srvReportSave->execute($req);
+        if ($this->hlpCfg->getEnabled()) {
+            // Read POSTed data and convert it into PHP object.
+            $rawBody = file_get_contents('php://input');
+            $data = json_decode($rawBody);
+            if (isset($data->{'csp-report'})) {
+                $req = new \Flancer32\Csp\Service\Report\Save\Request();
+                $req->setIsAdmin(true);
+                $req->setReport($data->{'csp-report'});
+                $this->srvReportSave->execute($req);
+            }
         }
-        // ... then create response
+        // ... then create NO_CONTENT response
         /** @var \Magento\Framework\App\Response\Http $result */
         $result = $this->factHttpResponse->create();
         $result->setHttpResponseCode(self::HTTP_NO_CONTENT);
