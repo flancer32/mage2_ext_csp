@@ -17,6 +17,7 @@ class Analyze
 {
     private const DESC = 'Analyze CSP violation reports and compose policy rules.';
     private const NAME = 'fl32:csp:analyze';
+
     /** @var \Flancer32\Csp\Helper\Config */
     private $hlpCfg;
     /** @var \Magento\Framework\App\ResourceConnection */
