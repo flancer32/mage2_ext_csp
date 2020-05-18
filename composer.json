@@ -1,6 +1,6 @@
 {
     "name": "flancer32/mage2_ext_csp",
-    "description": "Magento2: Content Security Policies reporter.",
+    "description": "Magento 2 module to collect CSP violations reports and to eliminate JS console warnings.",
     "type": "magento2-module",
     "homepage": "https://github.com/flancer32/mage2_ext_csp",
     "license": "GPL-3.0-only",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "flancer32/mage2_ext_base": "^0.2"
+        "flancer32/mage2_ext_base": "*"
     },
     "autoload": {
         "files": [
