@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Flancer32_Csp::menu" title="Content Security Policy"
+             module="Flancer32_Csp" sortOrder="20000" parent="Magento_Backend::system"
+             resource="Flancer32_Csp::action"/>
+        <add id="Flancer32_Csp::report_listing" title="CSP Reports" module="Flancer32_Csp"
+             sortOrder="100" parent="Flancer32_Csp::menu" action="fl32csp/report/listing"
+             resource="Flancer32_Csp::report"/>
+        <add id="Flancer32_Csp::rule_listing" title="CSP Rules" module="Flancer32_Csp"
+             sortOrder="100" parent="Flancer32_Csp::menu" action="fl32csp/rule/listing"
+             resource="Flancer32_Csp::rule"/>
+    </menu>
+</config>

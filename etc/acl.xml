@@ -19,6 +19,15 @@
                         </resource>
                     </resource>
                 </resource>
+                <resource id="Magento_Backend::system">
+                    <resource id="Flancer32_Csp::action" title="Content Security Policy"
+                              sortOrder="100">
+                        <resource id="Flancer32_Csp::report" title="CSP Reports"
+                                  sortOrder="100"/>
+                        <resource id="Flancer32_Csp::rule" title="CSP Rules"
+                                  sortOrder="200"/>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

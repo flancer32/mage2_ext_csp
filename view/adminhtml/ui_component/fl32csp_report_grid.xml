@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <!-- **************************************************** -->
+    <!-- Configuration of the component's data provider.      -->
+    <!-- **************************************************** -->
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <!-- First part (fl32csp_report_grid.) should be the same as name of this XML file -->
+            <item name="provider" xsi:type="string">fl32csp_report_grid.ds_for_grid</item>
+            <!-- Prevent JS error: "this.source is not a function at UiClass.exportSorting (column.js:187)" -->
+            <item name="deps" xsi:type="string">fl32csp_report_grid.ds_for_grid</item>
+        </item>
+        <!-- data loading indicator is bound to grid columns area (spinner will not disappear w/o it) -->
+        <item name="spinner" xsi:type="string">columns_for_the_grid</item>
+    </argument>
+
+    <!-- **************************************************** -->
+    <!-- Data Source (is used by data provider).              -->
+    <!-- **************************************************** -->
+    <dataSource name="ds_for_grid"
+                component="Magento_Ui/js/grid/provider">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <!--https://magento.stackexchange.com/questions/248611/magento-2-grid-data-source-definition-in-compact-form -->
+            <argument name="class" xsi:type="string">Flancer32\Base\App\Ui\DataProvider\Admin\Grid</argument>
+            <argument name="name" xsi:type="string">ds_for_grid</argument>
+            <argument name="qGrid" xsi:type="object">Flancer32\Csp\Ui\DataProvider\Report\Grid</argument>
+        </argument>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="sticky" xsi:type="boolean">false</item>
+            </item>
+        </argument>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="columns_for_the_grid">
+
+        <column name="Id"
+                component="Flancer32_Base/js/grid/column/integer">
+            <settings>
+                <dataType>number</dataType>
+                <filter>text</filter>
+                <label translate="true">ID</label>
+                <sortable>true</sortable>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+
+        <column name="Date"
+                class="Magento\Ui\Component\Listing\Columns\Date"
+                component="Magento_Ui/js/grid/columns/date">
+            <settings>
+                <dataType>date</dataType>
+                <filter>dateRange</filter>
+                <label translate="true">Date</label>
+            </settings>
+        </column>
+
+
+        <column name="Area"
+                component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <options class="Flancer32\Csp\Model\Config\Source\Report\Area"/>
+                <sortable>true</sortable>
+                <label translate="true">Area</label>
+            </settings>
+        </column>
+
+        <column name="Report">
+            <settings>
+                <dataType>date</dataType>
+                <filter>text</filter>
+                <label translate="true">Report</label>
+            </settings>
+        </column>
+
+    </columns>
+
+</listing>
