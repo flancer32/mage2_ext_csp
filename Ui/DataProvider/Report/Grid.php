@@ -22,6 +22,7 @@ class Grid
 
     /** Entities are used in the query (table names w/o prefix) */
     const E_REPORT = \Flancer32\Csp\Api\Repo\Dao\Report::ENTITY_NAME;
+
     /** @var \Flancer32\Base\App\Repo\Query\ClauseSet\Processor\AliasMapEntry[] */
     private $mapAliases;
 

@@ -4,7 +4,7 @@
  * Since: 2020
  */
 
-namespace Flancer32\Csp\Model\Config\Source\Report;
+namespace Flancer32\Csp\Model\Config\Source;
 
 class Area
     implements \Magento\Framework\Data\OptionSourceInterface

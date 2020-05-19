@@ -8,10 +8,10 @@
     <!-- **************************************************** -->
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <!-- First part (fl32csp_report_grid.) should be the same as name of this XML file -->
-            <item name="provider" xsi:type="string">fl32csp_report_grid.ds_for_grid</item>
+            <!-- First part (fl32csp_rule_grid.) should be the same as name of this XML file -->
+            <item name="provider" xsi:type="string">fl32csp_rule_grid.ds_for_grid</item>
             <!-- Prevent JS error: "this.source is not a function at UiClass.exportSorting (column.js:187)" -->
-            <item name="deps" xsi:type="string">fl32csp_report_grid.ds_for_grid</item>
+            <item name="deps" xsi:type="string">fl32csp_rule_grid.ds_for_grid</item>
         </item>
         <!-- data loading indicator is bound to grid columns area (spinner will not disappear w/o it) -->
         <item name="spinner" xsi:type="string">columns_for_the_grid</item>
@@ -26,7 +26,7 @@
             <!--https://magento.stackexchange.com/questions/248611/magento-2-grid-data-source-definition-in-compact-form -->
             <argument name="class" xsi:type="string">Flancer32\Base\App\Ui\DataProvider\Admin\Grid</argument>
             <argument name="name" xsi:type="string">ds_for_grid</argument>
-            <argument name="qGrid" xsi:type="object">Flancer32\Csp\Ui\DataProvider\Report\Grid</argument>
+            <argument name="qGrid" xsi:type="object">Flancer32\Csp\Ui\DataProvider\Rule\Grid</argument>
         </argument>
     </dataSource>
 
@@ -55,13 +55,14 @@
             </settings>
         </column>
 
-        <column name="Date"
-                class="Magento\Ui\Component\Listing\Columns\Date"
-                component="Magento_Ui/js/grid/columns/date">
+        <column name="Enabled"
+                component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <dataType>date</dataType>
-                <filter>dateRange</filter>
-                <label translate="true">Date</label>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <sortable>true</sortable>
+                <label translate="true">Enabled</label>
             </settings>
         </column>
 
@@ -76,11 +77,22 @@
             </settings>
         </column>
 
-        <column name="Report">
+        <column name="PolicyId"
+                component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <dataType>select</dataType>
+                <filter>select</filter>
+                <options class="Flancer32\Csp\Model\Config\Source\Policy"/>
+                <sortable>true</sortable>
+                <label translate="true">Policy</label>
+            </settings>
+        </column>
+
+        <column name="Source">
             <settings>
                 <dataType>date</dataType>
                 <filter>text</filter>
-                <label translate="true">Report</label>
+                <label translate="true">Source</label>
             </settings>
         </column>
 
