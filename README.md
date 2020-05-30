@@ -20,7 +20,11 @@ You can switch CSP from report only to strict mode (set `Report Only` to `false`
 ```
 
 ```shell script
+$ ./bin/magento deploy:mode:set developer
 $ composer require flancer32/mage2_ext_csp
+$ ./bin/magento setup:upgrade
+$ ./bin/magento deploy:mode:set production
+$ ./bin/magento cache:clean
 ```
 
 
