@@ -16,11 +16,15 @@
         </csp>
         <fl32_csp>
             <general>
-                <enabled>1</enabled>
+                <enabled>0</enabled>
             </general>
             <cron>
                 <enabled>1</enabled>
             </cron>
+            <reports>
+                <developer_only>0</developer_only>
+                <developer_ips>127.0.0.1</developer_ips>
+            </reports>
             <rules>
                 <new_rules_active>1</new_rules_active>
                 <report_only>1</report_only>

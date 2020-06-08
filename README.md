@@ -31,6 +31,7 @@ $ ./bin/magento cache:clean
 ## Docs
 
 - [Configuration](./docs/user/config.md)
+- [Usage strategy](./docs/user/strategy.md)
 - Grids:
   - [Violations reports](./docs/user/grid/reports.md) 
   - [CSP rules](./docs/user/grid/rules.md)
