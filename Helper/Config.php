@@ -32,7 +32,7 @@ class Config
      * Cron activity.
      *
      * @param string $scopeType
-     * @param string $scopeCode
+     * @param string|null $scopeCode
      * @return bool
      */
     public function getCronEnabled($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)
@@ -49,7 +49,7 @@ class Config
      * Activity of the module.
      *
      * @param string $scopeType
-     * @param string $scopeCode
+     * @param string|null $scopeCode
      * @return bool
      */
     public function getEnabled($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)
@@ -60,10 +60,50 @@ class Config
     }
 
     /**
+     * @param string $scopeType
+     * @param string|null $scopeCode
+     * @return array
+     */
+    public function getReportsDeveloperIps($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)
+    {
+        $result = [];
+        $enabled = $this->getReportsDeveloperOnly($scopeType, $scopeCode);
+        if ($enabled) {
+            $values = $this->scopeConfig->getValue('fl32_csp/reports/developer_ips', $scopeType, $scopeCode);
+            $ips = explode(',', $values);
+            foreach ($ips as $ip) {
+                $ip = trim($ip);
+                $ip = filter_var($ip, FILTER_VALIDATE_IP);
+                if ($ip) {
+                    $result[] = $ip;
+                }
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Collect reports only for developers.
+     *
+     * @param string $scopeType
+     * @param string|null $scopeCode
+     * @return bool
+     */
+    public function getReportsDeveloperOnly($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)
+    {
+        $result = $this->getEnabled($scopeType, $scopeCode);
+        if ($result) {
+            $result = $this->scopeConfig->getValue('fl32_csp/reports/developer_only', $scopeType, $scopeCode);
+            $result = filter_var($result, FILTER_VALIDATE_BOOLEAN);
+        }
+        return $result;
+    }
+
+    /**
      * Should new rules be active by default?
      *
      * @param string $scopeType
-     * @param string $scopeCode
+     * @param string|null $scopeCode
      * @return bool
      */
     public function getRulesNewAreActive($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)
@@ -80,7 +120,7 @@ class Config
      * Use 'Content-Security-Policy-Report-Only' or 'Content-Security-Policy'.
      *
      * @param string $scopeType
-     * @param string $scopeCode
+     * @param string|null $scopeCode
      * @return bool
      */
     public function getRulesReportOnly($scopeType = AScopeCfg::SCOPE_TYPE_DEFAULT, $scopeCode = null)

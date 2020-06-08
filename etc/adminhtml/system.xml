@@ -37,7 +37,31 @@
                     <field id="fl32_csp/general/enabled">1</field>
                 </depends>
             </group>
-            <group id="rules" translate="label" type="text" sortOrder="300"
+            <group id="reports" translate="label" type="text" sortOrder="300"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Reports</label>
+                <field id="developer_only" translate="label comment" type="select" sortOrder="100"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Developers Only</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Collect reports only for developers.</comment>
+                    <tooltip>Existing rules will be added to CSP header for all users, but 'report-uri' directive
+                        will be added to developers only.
+                    </tooltip>
+                </field>
+                <field id="developer_ips" translate="label comment" type="text" sortOrder="200"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Developers IPs</label>
+                    <comment>Comma-separated list of IP addresses to collect reports from.</comment>
+                    <depends>
+                        <field id="fl32_csp/reports/developer_only">1</field>
+                    </depends>
+                </field>
+                <depends>
+                    <field id="fl32_csp/general/enabled">1</field>
+                </depends>
+            </group>
+            <group id="rules" translate="label" type="text" sortOrder="400"
                    showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Rules</label>
                 <field id="new_rules_active" translate="label comment" type="select" sortOrder="100"
