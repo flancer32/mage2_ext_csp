@@ -140,16 +140,31 @@ class Analyze
                 $typeId = $types[$directive];
                 $isAdmin = $one->getAdminArea();
                 $uriFull = $reportObj->{'blocked-uri'};
-                $parts = parse_url($uriFull);
-                $host = isset($parts['host']) ? trim(strtolower($parts['host'])) : null;
-                if ($host) {
+                if ($this->isScheme($uriFull)) {
+                    // blocked-uri is a schema part only of regular URI
+                    $scheme = trim(strtolower($uriFull));
+                    // scheme only rules should contain ':' at the end (https://stackoverflow.com/a/18449556/4073821)
+                    $scheme .= ':';
                     $rule = new ERule();
                     $rule->setAdminArea($isAdmin);
                     $rule->setTypeId($typeId);
-                    $rule->setSource($host);
+                    $rule->setSource($scheme);
                     // collect the same rules
-                    $key = $this->composeKey($isAdmin, $typeId, $host);
+                    $key = $this->composeKey($isAdmin, $typeId, $scheme);
                     $result[$key] = $rule;
+                } else {
+                    // blocked-uri is a regular URI
+                    $parts = parse_url($uriFull);
+                    $host = isset($parts['host']) ? trim(strtolower($parts['host'])) : null;
+                    if ($host) {
+                        $rule = new ERule();
+                        $rule->setAdminArea($isAdmin);
+                        $rule->setTypeId($typeId);
+                        $rule->setSource($host);
+                        // collect the same rules
+                        $key = $this->composeKey($isAdmin, $typeId, $host);
+                        $result[$key] = $rule;
+                    }
                 }
             }
         }
@@ -212,6 +227,25 @@ class Analyze
             $key = $one->getKey();
             $id = $one->getId();
             $result[$key] = $id;
+        }
+        return $result;
+    }
+
+    /**
+     * Return 'true' if $uri is scheme (http, https, data, ...).
+     *
+     * @param string $uri
+     * @return bool
+     */
+    private function isScheme($uri)
+    {
+        $result = false;
+        if (
+            strlen($uri < 8) &&
+            (strstr($uri, ':') === false) &&
+            (strstr($uri, '/') === false)
+        ) {
+            $result = true;
         }
         return $result;
     }
