@@ -1,8 +1,11 @@
 # mage2_ext_csp
 Module to collect CSP violations reports and convert it to the CSP rules.
 
+**Attention! Starting from version 0.0.5 module's functionality is [disabled by default](./docs/user/strategy.md). You need explicitly enable module in `Stores / Configuration / Security / CSP / General`.**
+
 ## Description
 There are a lot of [Content Security Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP) (CSP) warnings in Javascript console for Magento 2.3.5+:
+
 ![](./docs/img/js_console_errors.png)
 
 This module adds `report-uri ...;` directive to CSP header, collects [reports](./docs/user/grid/reports.md) (separately for admin & front areas) then generates new [rules](./docs/user/grid/rules.md) to eliminate CSP warnings in console. Cron tasks to analyze reports & generate rules starts hourly.
