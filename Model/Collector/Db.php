@@ -43,8 +43,11 @@ class Db
             foreach ($rules as $rule) {
                 $id = $rule[QGetRules::A_TYPE];
                 $source = $rule[QGetRules::A_SOURCE];
-                $policy = new \Magento\Csp\Model\Policy\FetchPolicy($id, false, [$source]);
-                $defaultPolicies[] = $policy;
+                // there are ':' sources in the automatic rules (< version 0.0.6), just miss it (see OWN-174)
+                if ($source != ':') {
+                    $policy = new \Magento\Csp\Model\Policy\FetchPolicy($id, false, [$source]);
+                    $defaultPolicies[] = $policy;
+                }
             }
         }
         return $defaultPolicies;
