@@ -143,15 +143,18 @@ class Analyze
                 if ($this->isScheme($uriFull)) {
                     // blocked-uri is a schema part only of regular URI
                     $scheme = trim(strtolower($uriFull));
-                    // scheme only rules should contain ':' at the end (https://stackoverflow.com/a/18449556/4073821)
-                    $scheme .= ':';
-                    $rule = new ERule();
-                    $rule->setAdminArea($isAdmin);
-                    $rule->setTypeId($typeId);
-                    $rule->setSource($scheme);
-                    // collect the same rules
-                    $key = $this->composeKey($isAdmin, $typeId, $scheme);
-                    $result[$key] = $rule;
+                    // don't process empty schemes (OWN-174)
+                    if (strlen($scheme)) {
+                        // scheme only rules should contain ':' at the end (https://stackoverflow.com/a/18449556/4073821)
+                        $scheme .= ':';
+                        $rule = new ERule();
+                        $rule->setAdminArea($isAdmin);
+                        $rule->setTypeId($typeId);
+                        $rule->setSource($scheme);
+                        // collect the same rules
+                        $key = $this->composeKey($isAdmin, $typeId, $scheme);
+                        $result[$key] = $rule;
+                    }
                 } else {
                     // blocked-uri is a regular URI
                     $parts = parse_url($uriFull);
