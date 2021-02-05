@@ -42,7 +42,7 @@ class SendReports
         $this->checkAreaCode();
         if ($this->hlpCfg->getEnabled()) {
             try {
-                $this->reportNewRules->execute();
+                $this->reportNewRules->execute($throwException = true);
             } catch (\Exception $exception) {
                 $output->writeln('<info>' . $exception->getMessage() . '<info>');
             }

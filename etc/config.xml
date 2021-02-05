@@ -24,7 +24,7 @@
             <reports>
                 <developer_only>0</developer_only>
                 <developer_ips>127.0.0.1</developer_ips>
-                <developer_email_csv>associateOne@example.com,associateOne@example.com,</developer_email_csv>
+                <developer_email_csv>associateOne@example.com,associateOne@example.com</developer_email_csv>
                 <report_email_from>noreply@example.com</report_email_from>
                 <report_email_from_clear_name>Security Department</report_email_from_clear_name>
             </reports>

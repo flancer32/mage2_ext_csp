@@ -94,19 +94,19 @@ class EmailSend
 
     private function getMailSenderAddress(): string
     {
-        $recipientsSerialized = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from');
-        if (!$recipientsSerialized) {
+        $mailSenderAddress = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from');
+        if (!$mailSenderAddress) {
             throw new EmailSendException('aborted due to missing email sender address');
         }
-        return $recipientsSerialized;
+        return $mailSenderAddress;
     }
 
     private function getMailSenderClearName(): string
     {
-        $recipientsSerialized = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from_clear_name');
-        if (!$recipientsSerialized) {
-            $recipientsSerialized = $this->getMailSenderAddress();
+        $mailSenderClearName = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from_clear_name');
+        if (!$mailSenderClearName) {
+            $mailSenderClearName = $this->getMailSenderAddress();
         }
-        return $recipientsSerialized;
+        return $mailSenderClearName;
     }
 }

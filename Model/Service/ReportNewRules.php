@@ -58,7 +58,7 @@ class ReportNewRules
      * @throws \Magento\Framework\Exception\LocalizedException
      * @throws \Exception
      */
-    public function execute()
+    public function execute(bool $throwException = false)
     {
         $rulesToSend = $this->ruleDataService->getRulesToSend();
 
@@ -73,6 +73,9 @@ class ReportNewRules
             $this->updateProtocolTables($rulesToSend, $recepients);
         } catch (\Exception $exception) {
             $this->logger->emergency($exception->getMessage());
+            if ($throwException) {
+                throw $exception;
+            }
         }
     }
 
@@ -83,7 +86,8 @@ class ReportNewRules
      * @param array $recepients
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    private function updateProtocolTables(array $rulesSent, array $recepients) {
+    private function updateProtocolTables(array $rulesSent, array $recepients)
+    {
         $recepientsSerialized = implode(',', $recepients);
         foreach ($rulesSent as $ruleSent) {
             /** @var \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $Fl32RuleSent */
