@@ -19,6 +19,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="fl32_csp_analyze" xsi:type="object">Flancer32\Csp\Cli\Analyze</item>
+                <item name="fl32_csp_report_new_rules" xsi:type="object">Flancer32\Csp\Cli\SendReports</item>
             </argument>
         </arguments>
     </type>
