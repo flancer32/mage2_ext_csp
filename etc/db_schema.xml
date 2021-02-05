@@ -67,7 +67,7 @@
         </constraint>
         <constraint xsi:type="foreign" referenceId="FK_FL32_CSP_RULE_ID"
                     column="fl32_csp_rule_id" table="fl32_csp_rule_sent"
-                    referenceTable="fl32_csp_rule" referenceColumn="id" onDelete="NO ACTION"/>
+                    referenceTable="fl32_csp_rule" referenceColumn="id" onDelete="CASCADE"/>
     </table>
 
 </schema>
