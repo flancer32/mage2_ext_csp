@@ -5,23 +5,23 @@ namespace Flancer32\Csp\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
-interface Fl32RuleSentRepositoryInterface
+interface RuleSentRepositoryInterface
 {
 
     /**
      * Save fl_32_rule_sent
-     * @param \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
-     * @return \Flancer32\Csp\Api\Data\Fl32RuleSentInterface
+     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
+     * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(
-        \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
     );
 
     /**
      * Retrieve fl_32_rule_sent
      * @param string $fl32RuleSentId
-     * @return \Flancer32\Csp\Api\Data\Fl32RuleSentInterface
+     * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function get($fl32RuleSentId);
@@ -29,7 +29,7 @@ interface Fl32RuleSentRepositoryInterface
     /**
      * Retrieve fl_32_rule_sent matching the specified criteria.
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \Flancer32\Csp\Api\Data\Fl32RuleSentSearchResultsInterface
+     * @return \Flancer32\Csp\Api\Data\RuleSentSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getList(
@@ -38,12 +38,12 @@ interface Fl32RuleSentRepositoryInterface
 
     /**
      * Delete fl_32_rule_sent
-     * @param \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
+     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(
-        \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
     );
 
     /**

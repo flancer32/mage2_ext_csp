@@ -3,8 +3,8 @@
 namespace Flancer32\Csp\Model\Service;
 
 use Flancer32\Csp\Api\Data\Fl32RuleSentInterfaceFactory;
-use Flancer32\Csp\Api\Fl32RuleSentRepositoryInterface;
-use Flancer32\Csp\Api\Repo\Data\Rule as ERule;
+use Flancer32\Csp\Api\RuleSentRepositoryInterface;
+use Flancer32\Csp\Api\Repo\Data\Rule;
 use Magento\Framework\App\Helper\Context;
 use Magento\Framework\DataObject;
 use Psr\Log\LoggerInterface;
@@ -18,17 +18,17 @@ class ReportNewRules
      */
     private $htmlFormatter;
     /**
-     * @var DatabaseRule
+     * @var GetRulesToSend
      */
-    private $ruleDataService;
+    private $getRulesToSend;
     /**
-     * @var Fl32RuleSentRepositoryInterface
+     * @var RuleSentRepositoryInterface
      */
     private $fl32RuleSentRepository;
     /**
-     * @var EmailSend
+     * @var SendEmail
      */
-    private $send;
+    private $sendEmail;
     /**
      * @var LoggerInterface
      */
@@ -39,17 +39,17 @@ class ReportNewRules
     private $fl32RuleSentFactory;
 
     public function __construct(
-        DatabaseRule $ruleDataService,
+        GetRulesToSend $getRulesToSend,
         HtmlFormatter $htmlFormatter,
-        Fl32RuleSentRepositoryInterface $fl32RuleSentRepository,
+        RuleSentRepositoryInterface $fl32RuleSentRepository,
         Fl32RuleSentInterfaceFactory $fl32RuleSentFactory,
-        EmailSend $send,
+        SendEmail $sendEmail,
         Context $context)
     {
-        $this->ruleDataService = $ruleDataService;
+        $this->getRulesToSend = $getRulesToSend;
         $this->htmlFormatter = $htmlFormatter;
         $this->fl32RuleSentRepository = $fl32RuleSentRepository;
-        $this->send = $send;
+        $this->sendEmail = $sendEmail;
         $this->logger = $context->getLogger();
         $this->fl32RuleSentFactory = $fl32RuleSentFactory;
     }
@@ -60,7 +60,7 @@ class ReportNewRules
      */
     public function execute(bool $throwException = false)
     {
-        $rulesToSend = $this->ruleDataService->getRulesToSend();
+        $rulesToSend = $this->getRulesToSend->execute();
 
         if (!count($rulesToSend)) {
             return;
@@ -69,7 +69,7 @@ class ReportNewRules
         $reportHtmlRules = $this->htmlFormatter->renderNewRulesSection($rulesToSend);
 
         try {
-            $recepients = $this->send->with($reportHtmlRules);
+            $recepients = $this->sendEmail->with($reportHtmlRules);
             $this->updateProtocolTables($rulesToSend, $recepients);
         } catch (\Exception $exception) {
             $this->logger->emergency($exception->getMessage());
@@ -82,7 +82,7 @@ class ReportNewRules
     /**
      * extendable with new for-each blocks and parameters with different dataobject implementations
      * @param array $reportsToSend
-     * @param Erule[]|DataObject[] $rulesSent
+     * @param Rule[]|DataObject[] $rulesSent
      * @param array $recepients
      * @throws \Magento\Framework\Exception\LocalizedException
      */
@@ -90,10 +90,10 @@ class ReportNewRules
     {
         $recepientsSerialized = implode(',', $recepients);
         foreach ($rulesSent as $ruleSent) {
-            /** @var \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $Fl32RuleSent */
+            /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $Fl32RuleSent */
             $Fl32RuleSent = $this->fl32RuleSentFactory->create();
-            $Fl32RuleSent->setFl32CspRuleId($ruleSent->getId());
-            $Fl32RuleSent->setFl32CspRuleSentTo($recepientsSerialized);
+            $Fl32RuleSent->setCspRuleId($ruleSent->getId());
+            $Fl32RuleSent->setCspRuleSentTo($recepientsSerialized);
             $this->fl32RuleSentRepository->save($Fl32RuleSent);
         }
     }

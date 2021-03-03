@@ -8,7 +8,7 @@ use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\Escaper;
 
-class EmailSend
+class SendEmail
 {
     /**
      * @var TransportBuilder
@@ -52,30 +52,36 @@ class EmailSend
      */
     public function with($reportHtml)
     {
-        $this->inlineTranslation->suspend();
-        $sender = [
-            'name'  => $this->escaper->escapeHtml($this->getMailSenderClearName()),
-            'email' => $this->escaper->escapeHtml($this->getMailSenderAddress()),
-        ];
-        $transportBuilder = $this->transportBuilder->setTemplateIdentifier('security_csp_report')->setTemplateOptions(
-            [
-                'area'  => \Magento\Framework\App\Area::AREA_ADMINHTML,
-                'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
-            ]
-        )->setTemplateVars(
-            [
-                'body' => $reportHtml,
-            ]
-        )->setFrom($sender);
+        $recepients = [];
+        try {
+            $this->inlineTranslation->suspend();
+            $sender = [
+                'name'  => $this->escaper->escapeHtml($this->getMailSenderClearName()),
+                'email' => $this->escaper->escapeHtml($this->getMailSenderAddress()),
+            ];
+            $transportBuilder =
+                $this->transportBuilder->setTemplateIdentifier('security_csp_report')->setTemplateOptions(
+                    [
+                        'area'  => \Magento\Framework\App\Area::AREA_ADMINHTML,
+                        'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                    ]
+                )->setTemplateVars(
+                    [
+                        'body' => $reportHtml,
+                    ]
+                )->setFrom($sender);
 
-        $recepients = $this->getMailRecipients();
-        foreach ($recepients as $recipient) {
-            $transportBuilder->addTo($recipient);
+            $recepients = $this->getMailRecipients();
+            foreach ($recepients as $recipient) {
+                $transportBuilder->addTo($recipient);
+            }
+            $transportBuilder->getTransport()->sendMessage();
+        } catch (EmailSendException $exception) {
+            throw $exception;
+        } finally {
+            $this->inlineTranslation->resume();
+            return $recepients;
         }
-        $transportBuilder->getTransport()->sendMessage();
-        $this->inlineTranslation->resume();
-        return $recepients;
-
     }
 
     /**

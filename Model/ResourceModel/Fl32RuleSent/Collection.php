@@ -19,7 +19,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     protected function _construct()
     {
         $this->_init(
-            \Flancer32\Csp\Model\Fl32RuleSent::class,
+            \Flancer32\Csp\Model\RuleSent::class,
             \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent::class
         );
     }

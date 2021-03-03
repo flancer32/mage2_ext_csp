@@ -1,25 +1,27 @@
 <?php
+
 namespace Flancer32\Csp\Model\Service;
 
 use Flancer32\Csp\Model\ResourceModel\Fl32RuleSent;
 use Flancer32\Csp\Api\Repo\Data\Rule as ERule;
 
-class DatabaseRule extends \Flancer32\Csp\Ui\DataProvider\Rule\Grid
+class GetRulesToSend
 {
     /**
      * @var Fl32RuleSent
      */
-    private $fl32RuleSentResourceModel;
+    private $ruleSentResourceModel;
     /**
      * @var \Flancer32\Csp\Repo\Dao\Rule
      */
     private $ruleRepository;
 
-    public function __construct(\Magento\Framework\App\ResourceConnection $resource,
-        Fl32RuleSent $fl32RuleSentResourceModel,
+    public function __construct(
+        \Magento\Framework\App\ResourceConnection $resource,
+        Fl32RuleSent $RuleSentResourceModel,
         \Flancer32\Csp\Repo\Dao\Rule $ruleRepository)
     {
-        $this->fl32RuleSentResourceModel = $fl32RuleSentResourceModel;
+        $this->ruleSentResourceModel = $RuleSentResourceModel;
         $this->ruleRepository = $ruleRepository;
     }
 
@@ -27,10 +29,11 @@ class DatabaseRule extends \Flancer32\Csp\Ui\DataProvider\Rule\Grid
      * @return ERule[]
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public  function getRulesToSend(): array {
+    public function execute(): array
+    {
         /** @var ERule[] $fromRepository */
-        return $this->ruleRepository->getSet($where = ERule::ID . '>' . $this->fl32RuleSentResourceModel->getMaxIdRuleSent());
+        return $this->ruleRepository->getSet(
+            $where = ERule::ID . '>' . $this->ruleSentResourceModel->getMaxIdRuleSent()
+        );
     }
-
-
 }

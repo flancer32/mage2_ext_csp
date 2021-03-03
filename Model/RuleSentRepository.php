@@ -5,7 +5,7 @@ namespace Flancer32\Csp\Model;
 
 use Flancer32\Csp\Api\Data\Fl32RuleSentInterfaceFactory;
 use Flancer32\Csp\Api\Data\Fl32RuleSentSearchResultsInterfaceFactory;
-use Flancer32\Csp\Api\Fl32RuleSentRepositoryInterface;
+use Flancer32\Csp\Api\RuleSentRepositoryInterface;
 use Flancer32\Csp\Model\ResourceModel\Fl32RuleSent as ResourceFl32RuleSent;
 use Flancer32\Csp\Model\ResourceModel\Fl32RuleSent\CollectionFactory as Fl32RuleSentCollectionFactory;
 use Magento\Framework\Api\DataObjectHelper;
@@ -18,7 +18,7 @@ use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\Reflection\DataObjectProcessor;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Fl32RuleSentRepository implements Fl32RuleSentRepositoryInterface
+class RuleSentRepository implements RuleSentRepositoryInterface
 {
 
     protected $fl32RuleSentFactory;
@@ -86,17 +86,12 @@ class Fl32RuleSentRepository implements Fl32RuleSentRepositoryInterface
      * {@inheritdoc}
      */
     public function save(
-        \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
     ) {
-        /* if (empty($fl32RuleSent->getStoreId())) {
-            $storeId = $this->storeManager->getStore()->getId();
-            $fl32RuleSent->setStoreId($storeId);
-        } */
-
         $fl32RuleSentData = $this->extensibleDataObjectConverter->toNestedArray(
             $fl32RuleSent,
             [],
-            \Flancer32\Csp\Api\Data\Fl32RuleSentInterface::class
+            \Flancer32\Csp\Api\Data\RuleSentInterface::class
         );
 
         $fl32RuleSentModel = $this->fl32RuleSentFactory->create()->setData($fl32RuleSentData);
@@ -135,7 +130,7 @@ class Fl32RuleSentRepository implements Fl32RuleSentRepositoryInterface
 
         $this->extensionAttributesJoinProcessor->process(
             $collection,
-            \Flancer32\Csp\Api\Data\Fl32RuleSentInterface::class
+            \Flancer32\Csp\Api\Data\RuleSentInterface::class
         );
 
         $this->collectionProcessor->process($criteria, $collection);
@@ -157,11 +152,11 @@ class Fl32RuleSentRepository implements Fl32RuleSentRepositoryInterface
      * {@inheritdoc}
      */
     public function delete(
-        \Flancer32\Csp\Api\Data\Fl32RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
     ) {
         try {
             $fl32RuleSentModel = $this->fl32RuleSentFactory->create();
-            $this->resource->load($fl32RuleSentModel, $fl32RuleSent->getFl32CspRuleSentId());
+            $this->resource->load($fl32RuleSentModel, $fl32RuleSent->getCspRuleSentId());
             $this->resource->delete($fl32RuleSentModel);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(__(

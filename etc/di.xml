@@ -52,8 +52,8 @@
     <preference for="Flancer32\Csp\Api\Fl32ReportsSentRepositoryInterface" type="Flancer32\Csp\Model\Fl32ReportsSentRepository"/>
     <preference for="Flancer32\Csp\Api\Data\Fl32ReportsSentInterface" type="Flancer32\Csp\Model\Data\Fl32ReportsSent"/>
     <preference for="Flancer32\Csp\Api\Data\Fl32ReportsSentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
-    <preference for="Flancer32\Csp\Api\Fl32RuleSentRepositoryInterface" type="Flancer32\Csp\Model\Fl32RuleSentRepository"/>
-    <preference for="Flancer32\Csp\Api\Data\Fl32RuleSentInterface" type="Flancer32\Csp\Model\Data\Fl32RuleSent"/>
-    <preference for="Flancer32\Csp\Api\Data\Fl32RuleSentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Flancer32\Csp\Api\RuleSentRepositoryInterface" type="Flancer32\Csp\Model\RuleSentRepository"/>
+    <preference for="Flancer32\Csp\Api\Data\RuleSentInterface" type="Flancer32\Csp\Model\Data\RuleSent"/>
+    <preference for="Flancer32\Csp\Api\Data\RuleSentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
 </config>
