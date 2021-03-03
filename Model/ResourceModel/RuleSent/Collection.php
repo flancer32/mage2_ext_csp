@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Flancer32\Csp\Model\ResourceModel\Fl32RuleSent;
+namespace Flancer32\Csp\Model\ResourceModel\RuleSent;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
@@ -20,7 +20,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     {
         $this->_init(
             \Flancer32\Csp\Model\RuleSent::class,
-            \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent::class
+            \Flancer32\Csp\Model\ResourceModel\ruleSent::class
         );
     }
 }

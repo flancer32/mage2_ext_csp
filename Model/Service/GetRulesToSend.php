@@ -2,13 +2,13 @@
 
 namespace Flancer32\Csp\Model\Service;
 
-use Flancer32\Csp\Model\ResourceModel\Fl32RuleSent;
+use Flancer32\Csp\Model\ResourceModel\RuleSent;
 use Flancer32\Csp\Api\Repo\Data\Rule as ERule;
 
 class GetRulesToSend
 {
     /**
-     * @var Fl32RuleSent
+     * @var ruleSent
      */
     private $ruleSentResourceModel;
     /**
@@ -18,7 +18,7 @@ class GetRulesToSend
 
     public function __construct(
         \Magento\Framework\App\ResourceConnection $resource,
-        Fl32RuleSent $RuleSentResourceModel,
+        ruleSent $RuleSentResourceModel,
         \Flancer32\Csp\Repo\Dao\Rule $ruleRepository)
     {
         $this->ruleSentResourceModel = $RuleSentResourceModel;

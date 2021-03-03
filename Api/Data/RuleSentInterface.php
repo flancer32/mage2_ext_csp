@@ -18,10 +18,10 @@ interface RuleSentInterface extends \Magento\Framework\Api\ExtensibleDataInterfa
 
     /**
      * Set fl32_csp_rule_sent_id
-     * @param string $fl32RuleSentId
+     * @param string $ruleSentId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleSentId($fl32RuleSentId);
+    public function setCspRuleSentId($ruleSentId);
 
     /**
      * Get fl32_csp_rule_id
@@ -31,25 +31,10 @@ interface RuleSentInterface extends \Magento\Framework\Api\ExtensibleDataInterfa
 
     /**
      * Set fl32_csp_rule_id
-     * @param string $fl32RuleId
+     * @param string $ruleId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleId($fl32RuleId);
-
-    /**
-     * Retrieve existing extension attributes object or create a new one.
-     * @return \Flancer32\Csp\Api\Data\Fl32RuleSentExtensionInterface|null
-     */
-    public function getExtensionAttributes();
-
-    /**
-     * Set an extension attributes object.
-     * @param \Flancer32\Csp\Api\Data\Fl32RuleSentExtensionInterface $extensionAttributes
-     * @return $this
-     */
-    public function setExtensionAttributes(
-        \Flancer32\Csp\Api\Data\Fl32RuleSentExtensionInterface $extensionAttributes
-    );
+    public function setCspRuleId($ruleId);
 
     /**
      * Get fl32_csp_rule_sent_to
@@ -59,9 +44,9 @@ interface RuleSentInterface extends \Magento\Framework\Api\ExtensibleDataInterfa
 
     /**
      * Set fl32_csp_rule_sent_to
-     * @param string $fl32RuleSentTo
+     * @param string $ruleSentTo
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleSentTo($fl32RuleSentTo);
+    public function setCspRuleSentTo($ruleSentTo);
 }
 

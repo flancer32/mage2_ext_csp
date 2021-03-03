@@ -10,21 +10,21 @@ interface RuleSentRepositoryInterface
 
     /**
      * Save fl_32_rule_sent
-     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
+     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(
-        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent
     );
 
     /**
      * Retrieve fl_32_rule_sent
-     * @param string $fl32RuleSentId
+     * @param string $ruleSentId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function get($fl32RuleSentId);
+    public function get($ruleSentId);
 
     /**
      * Retrieve fl_32_rule_sent matching the specified criteria.
@@ -38,21 +38,21 @@ interface RuleSentRepositoryInterface
 
     /**
      * Delete fl_32_rule_sent
-     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
+     * @param \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(
-        \Flancer32\Csp\Api\Data\RuleSentInterface $fl32RuleSent
+        \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent
     );
 
     /**
      * Delete fl_32_rule_sent by ID
-     * @param string $fl32RuleSentId
+     * @param string $ruleSentId
      * @return bool true on success
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      * @throws \Magento\Framework\Exception\LocalizedException
      */
-    public function deleteById($fl32RuleSentId);
+    public function deleteById($ruleSentId);
 }
 

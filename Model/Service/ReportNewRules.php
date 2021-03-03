@@ -2,7 +2,7 @@
 
 namespace Flancer32\Csp\Model\Service;
 
-use Flancer32\Csp\Api\Data\Fl32RuleSentInterfaceFactory;
+use Flancer32\Csp\Api\Data\RuleSentInterfaceFactory;
 use Flancer32\Csp\Api\RuleSentRepositoryInterface;
 use Flancer32\Csp\Api\Repo\Data\Rule;
 use Magento\Framework\App\Helper\Context;
@@ -24,7 +24,7 @@ class ReportNewRules
     /**
      * @var RuleSentRepositoryInterface
      */
-    private $fl32RuleSentRepository;
+    private $ruleSentRepository;
     /**
      * @var SendEmail
      */
@@ -34,24 +34,24 @@ class ReportNewRules
      */
     private $logger;
     /**
-     * @var Fl32RuleSentInterfaceFactory
+     * @var RuleSentInterfaceFactory
      */
-    private $fl32RuleSentFactory;
+    private $ruleSentFactory;
 
     public function __construct(
         GetRulesToSend $getRulesToSend,
         HtmlFormatter $htmlFormatter,
-        RuleSentRepositoryInterface $fl32RuleSentRepository,
-        Fl32RuleSentInterfaceFactory $fl32RuleSentFactory,
+        RuleSentRepositoryInterface $ruleSentRepository,
+        RuleSentInterfaceFactory $ruleSentFactory,
         SendEmail $sendEmail,
         Context $context)
     {
         $this->getRulesToSend = $getRulesToSend;
         $this->htmlFormatter = $htmlFormatter;
-        $this->fl32RuleSentRepository = $fl32RuleSentRepository;
+        $this->ruleSentRepository = $ruleSentRepository;
         $this->sendEmail = $sendEmail;
         $this->logger = $context->getLogger();
-        $this->fl32RuleSentFactory = $fl32RuleSentFactory;
+        $this->ruleSentFactory = $ruleSentFactory;
     }
 
     /**
@@ -90,11 +90,11 @@ class ReportNewRules
     {
         $recepientsSerialized = implode(',', $recepients);
         foreach ($rulesSent as $ruleSent) {
-            /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $Fl32RuleSent */
-            $Fl32RuleSent = $this->fl32RuleSentFactory->create();
-            $Fl32RuleSent->setCspRuleId($ruleSent->getId());
-            $Fl32RuleSent->setCspRuleSentTo($recepientsSerialized);
-            $this->fl32RuleSentRepository->save($Fl32RuleSent);
+            /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent */
+            $ruleSent = $this->ruleSentFactory->create();
+            $ruleSent->setCspRuleId($ruleSent->getId());
+            $ruleSent->setCspRuleSentTo($recepientsSerialized);
+            $this->ruleSentRepository->save($ruleSent);
         }
     }
 

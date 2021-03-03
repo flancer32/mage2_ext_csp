@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Flancer32\Csp\Model;
 
 use Flancer32\Csp\Api\Data\RuleSentInterface;
-use Flancer32\Csp\Api\Data\Fl32RuleSentInterfaceFactory;
+use Flancer32\Csp\Api\Data\RuleSentInterfaceFactory;
 use Magento\Framework\Api\DataObjectHelper;
 
 class RuleSent extends \Magento\Framework\Model\AbstractModel
@@ -19,19 +19,19 @@ class RuleSent extends \Magento\Framework\Model\AbstractModel
     /**
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
-     * @param Fl32RuleSentInterfaceFactory $csp_rule_sentDataFactory
+     * @param RuleSentInterfaceFactory $csp_rule_sentDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent $resource
-     * @param \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent\Collection $resourceCollection
+     * @param \Flancer32\Csp\Model\ResourceModel\ruleSent $resource
+     * @param \Flancer32\Csp\Model\ResourceModel\RuleSent\Collection $resourceCollection
      * @param array $data
      */
     public function __construct(
         \Magento\Framework\Model\Context $context,
         \Magento\Framework\Registry $registry,
-        Fl32RuleSentInterfaceFactory $csp_rule_sentDataFactory,
+        RuleSentInterfaceFactory $csp_rule_sentDataFactory,
         DataObjectHelper $dataObjectHelper,
-        \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent $resource,
-        \Flancer32\Csp\Model\ResourceModel\Fl32RuleSent\Collection $resourceCollection,
+        \Flancer32\Csp\Model\ResourceModel\ruleSent $resource,
+        \Flancer32\Csp\Model\ResourceModel\RuleSent\Collection $resourceCollection,
         array $data = []
     ) {
         $this->csp_rule_sentDataFactory = $csp_rule_sentDataFactory;
