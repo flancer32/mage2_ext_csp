@@ -14,39 +14,39 @@ interface RuleSentInterface extends \Magento\Framework\Api\ExtensibleDataInterfa
      * Get fl_32_rule_sent_id
      * @return string|null
      */
-    public function getCspRuleSentId();
+    public function getFl32CspRuleSentId();
 
     /**
      * Set fl32_csp_rule_sent_id
      * @param string $ruleSentId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleSentId($ruleSentId);
+    public function setFl32CspRuleSentId($ruleSentId);
 
     /**
      * Get fl32_csp_rule_id
      * @return string|null
      */
-    public function getCspRuleId();
+    public function getFl32CspRuleId();
 
     /**
      * Set fl32_csp_rule_id
      * @param string $ruleId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleId($ruleId);
+    public function setFl32CspRuleId($ruleId);
 
     /**
      * Get fl32_csp_rule_sent_to
      * @return string|null
      */
-    public function getCspRuleSentTo();
+    public function getFl32CspRuleSentTo();
 
     /**
      * Set fl32_csp_rule_sent_to
      * @param string $ruleSentTo
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setCspRuleSentTo($ruleSentTo);
+    public function setFl32CspRuleSentTo($ruleSentTo);
 }
 

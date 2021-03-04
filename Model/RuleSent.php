@@ -21,7 +21,7 @@ class RuleSent extends \Magento\Framework\Model\AbstractModel
      * @param \Magento\Framework\Registry $registry
      * @param RuleSentInterfaceFactory $csp_rule_sentDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \Flancer32\Csp\Model\ResourceModel\ruleSent $resource
+     * @param \Flancer32\Csp\Model\ResourceModel\RuleSent $resource
      * @param \Flancer32\Csp\Model\ResourceModel\RuleSent\Collection $resourceCollection
      * @param array $data
      */
@@ -30,7 +30,7 @@ class RuleSent extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Registry $registry,
         RuleSentInterfaceFactory $csp_rule_sentDataFactory,
         DataObjectHelper $dataObjectHelper,
-        \Flancer32\Csp\Model\ResourceModel\ruleSent $resource,
+        \Flancer32\Csp\Model\ResourceModel\RuleSent $resource,
         \Flancer32\Csp\Model\ResourceModel\RuleSent\Collection $resourceCollection,
         array $data = []
     ) {

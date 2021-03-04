@@ -8,7 +8,7 @@ use Flancer32\Csp\Api\Repo\Data\Rule as ERule;
 class GetRulesToSend
 {
     /**
-     * @var ruleSent
+     * @var RuleSent
      */
     private $ruleSentResourceModel;
     /**
@@ -18,7 +18,7 @@ class GetRulesToSend
 
     public function __construct(
         \Magento\Framework\App\ResourceConnection $resource,
-        ruleSent $RuleSentResourceModel,
+        RuleSent $RuleSentResourceModel,
         \Flancer32\Csp\Repo\Dao\Rule $ruleRepository)
     {
         $this->ruleSentResourceModel = $RuleSentResourceModel;

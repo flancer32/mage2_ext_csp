@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Flancer32\Csp\Model\ResourceModel;
 
-class ruleSent extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
+class RuleSent extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
 
     /**

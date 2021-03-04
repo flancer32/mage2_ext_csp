@@ -25,8 +25,8 @@ class SendReports extends \Flancer32\Base\App\Cli\Base
     private $reportNewRules;
 
     public function __construct(
-        Flancer32\Csp\Helper\Config\Proxy $hlpCfg,
-        Flancer32\Csp\Model\Service\ReportNewRules\Proxy $reportNewRules)
+        \Flancer32\Csp\Helper\Config\Proxy $hlpCfg,
+        \Flancer32\Csp\Model\Service\ReportNewRules\Proxy $reportNewRules)
     {
         parent::__construct(self::NAME, self::DESC);
         $this->reportNewRules = $reportNewRules;

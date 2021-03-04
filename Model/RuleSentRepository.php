@@ -158,7 +158,7 @@ class RuleSentRepository implements RuleSentRepositoryInterface
     {
         try {
             $ruleSentModel = $this->ruleSentFactory->create();
-            $this->resource->load($ruleSentModel, $ruleSent->getCspRuleSentId());
+            $this->resource->load($ruleSentModel, $ruleSent->getFl32CspRuleSentId());
             $this->resource->delete($ruleSentModel);
         } catch (\Exception $exception) {
             throw new CouldNotDeleteException(
