@@ -36,7 +36,7 @@ class ReportNewRules
     /**
      * @var RuleSentInterfaceFactory
      */
-    private $ruleSentFactory;
+    private $ruleToStoreAsSentFactory;
 
     public function __construct(
         GetRulesToSend $getRulesToSend,
@@ -51,7 +51,7 @@ class ReportNewRules
         $this->ruleSentRepository = $ruleSentRepository;
         $this->sendEmail = $sendEmail;
         $this->logger = $context->getLogger();
-        $this->ruleSentFactory = $ruleSentFactory;
+        $this->ruleToStoreAsSentFactory = $ruleSentFactory;
     }
 
     /**
@@ -88,12 +88,12 @@ class ReportNewRules
     private function updateProtocolTables(array $rulesSent, array $recepients)
     {
         $recepientsSerialized = implode(',', $recepients);
-        foreach ($rulesSent as $ruleSent) {
-            /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $ruleSent */
-            $ruleSent = $this->ruleSentFactory->create();
-            $ruleSent->setFl32CspRuleId($ruleSent->getId());
-            $ruleSent->setFl32CspRuleSentTo($recepientsSerialized);
-            $this->ruleSentRepository->save($ruleSent);
+        foreach ($rulesSent as $rule) {
+            /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $ruleStoreAsSent */
+            $ruleStoreAsSent = $this->ruleToStoreAsSentFactory->create();
+            $ruleStoreAsSent->setFl32CspRuleId($rule->getId());
+            $ruleStoreAsSent->setFl32CspRuleSentTo($recepientsSerialized);
+            $this->ruleSentRepository->save($ruleStoreAsSent);
         }
     }
 
