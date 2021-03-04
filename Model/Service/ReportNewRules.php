@@ -80,7 +80,6 @@ class ReportNewRules
     }
 
     /**
-     * extendable with new for-each blocks and parameters with different dataobject implementations
      * @param array $reportsToSend
      * @param Rule[]|DataObject[] $rulesSent
      * @param array $recepients

@@ -53,8 +53,8 @@ class SendEmail
     public function with($reportHtml)
     {
         $recepients = [];
+        $this->inlineTranslation->suspend();
         try {
-            $this->inlineTranslation->suspend();
             $sender = [
                 'name'  => $this->escaper->escapeHtml($this->getMailSenderClearName()),
                 'email' => $this->escaper->escapeHtml($this->getMailSenderAddress()),
@@ -76,8 +76,6 @@ class SendEmail
                 $transportBuilder->addTo($recipient);
             }
             $transportBuilder->getTransport()->sendMessage();
-        } catch (EmailSendException $exception) {
-            throw $exception;
         } finally {
             $this->inlineTranslation->resume();
             return $recepients;
