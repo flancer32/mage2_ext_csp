@@ -5,5 +5,8 @@
         <job name="fl32_csp_analyze" instance="Flancer32\Csp\Cron\Analyze" method="execute">
             <schedule>40 * * * *</schedule>
         </job>
+        <job name="fl32_csp_reportNewRules" instance="Flancer32\Csp\Cron\SendNewRules" method="execute">
+            <schedule>00 02 */1 * *</schedule>
+        </job>
     </group>
 </config>

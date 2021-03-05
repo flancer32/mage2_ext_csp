@@ -56,4 +56,18 @@
         </constraint>
     </table>
 
+    <table name="fl32_csp_rule_sent" resource="default" engine="innodb"
+           comment="Table storing email-reported rules persistently">
+        <column xsi:type="smallint" name="csp_rule_sent_id" padding="6" unsigned="true" nullable="false"
+                identity="true" comment="Entity Id"/>
+        <column name="csp_rule_id" xsi:type="int" padding="10" unsigned="true" nullable="false" identity="false"/>
+        <column name="csp_rule_sent_to" nullable="true" xsi:type="text"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="csp_rule_sent_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_FL32_CSP_RULE_ID"
+                    column="csp_rule_id" table="fl32_csp_rule_sent"
+                    referenceTable="fl32_csp_rule" referenceColumn="id" onDelete="CASCADE"/>
+    </table>
+
 </schema>
