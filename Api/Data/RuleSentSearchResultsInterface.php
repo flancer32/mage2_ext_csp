@@ -7,13 +7,13 @@ interface RuleSentSearchResultsInterface extends \Magento\Framework\Api\SearchRe
 {
 
     /**
-     * Get fl32_csp_rule_sent list.
+     * Get csp_rule_sent list.
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface[]
      */
     public function getItems();
 
     /**
-     * Set fl32_csp_rule_id list.
+     * Set csp_rule_id list.
      * @param \Flancer32\Csp\Api\Data\RuleSentInterface[] $items
      * @return $this
      */

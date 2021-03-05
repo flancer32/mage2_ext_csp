@@ -9,60 +9,60 @@ class RuleSent extends \Magento\Framework\Api\AbstractExtensibleObject implement
 {
 
     /**
-     * Get fl32_csp_rule_sent_id
+     * Get csp_rule_sent_id
      * @return string|null
      */
-    public function getFl32CspRuleSentId()
+    public function getCspRuleSentId()
     {
-        return $this->_get(self::FL32_CSP_RULE_SENT_ID);
+        return $this->_get(self::CSP_RULE_SENT_ID);
     }
 
     /**
-     * Set fl32_csp_rule_sent_id
+     * Set csp_rule_sent_id
      * @param string $ruleSentId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setFl32CspRuleSentId($ruleSentId)
+    public function setCspRuleSentId($ruleSentId)
     {
-        return $this->setData(self::FL32_CSP_RULE_SENT_ID, $ruleSentId);
+        return $this->setData(self::CSP_RULE_SENT_ID, $ruleSentId);
     }
 
     /**
-     * Get fl32_csp_rule_id
+     * Get csp_rule_id
      * @return string|null
      */
-    public function getFl32CspRuleId()
+    public function getCspRuleId()
     {
-        return $this->_get(self::FL32_CSP_RULE_ID);
+        return $this->_get(self::CSP_RULE_ID);
     }
 
     /**
-     * Set fl32_csp_rule_id
+     * Set csp_rule_id
      * @param string $ruleId
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setFl32CspRuleId($ruleId)
+    public function setCspRuleId($ruleId)
     {
-        return $this->setData(self::FL32_CSP_RULE_ID, $ruleId);
+        return $this->setData(self::CSP_RULE_ID, $ruleId);
     }
 
     /**
-     * Get fl32_csp_rule_sent_to
+     * Get csp_rule_sent_to
      * @return string|null
      */
-    public function getFl32CspRuleSentTo()
+    public function getCspRuleSentTo()
     {
-        return $this->_get(self::FL32_CSP_RULE_SENT_TO);
+        return $this->_get(self::CSP_RULE_SENT_TO);
     }
 
     /**
-     * Set fl32_csp_rule_sent_to
+     * Set csp_rule_sent_to
      * @param string $ruleSentTo
      * @return \Flancer32\Csp\Api\Data\RuleSentInterface
      */
-    public function setFl32CspRuleSentTo($ruleSentTo)
+    public function setCspRuleSentTo($ruleSentTo)
     {
-        return $this->setData(self::FL32_CSP_RULE_SENT_TO, $ruleSentTo);
+        return $this->setData(self::CSP_RULE_SENT_TO, $ruleSentTo);
     }
 }
 

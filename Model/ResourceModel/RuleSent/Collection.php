@@ -9,7 +9,7 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     /**
      * @var string
      */
-    protected $_idFieldName = 'fl32_csp_rule_sent_id';
+    protected $_idFieldName = 'csp_rule_sent_id';
 
     /**
      * Define resource model

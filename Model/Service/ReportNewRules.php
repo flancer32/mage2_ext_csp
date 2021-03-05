@@ -91,8 +91,8 @@ class ReportNewRules
         foreach ($rulesSent as $rule) {
             /** @var \Flancer32\Csp\Api\Data\RuleSentInterface $ruleStoreAsSent */
             $ruleStoreAsSent = $this->ruleToStoreAsSentFactory->create();
-            $ruleStoreAsSent->setFl32CspRuleId($rule->getId());
-            $ruleStoreAsSent->setFl32CspRuleSentTo($recepientsSerialized);
+            $ruleStoreAsSent->setCspRuleId($rule->getId());
+            $ruleStoreAsSent->setCspRuleSentTo($recepientsSerialized);
             $this->ruleSentRepository->save($ruleStoreAsSent);
         }
     }

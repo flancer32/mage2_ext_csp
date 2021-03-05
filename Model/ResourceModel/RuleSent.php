@@ -13,7 +13,7 @@ class RuleSent extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('fl32_csp_rule_sent', 'fl32_csp_rule_sent_id');
+        $this->_init('csp_rule_sent', 'csp_rule_sent_id');
     }
 
     /**
@@ -26,7 +26,7 @@ class RuleSent extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $select = $this->getConnection()->select();
         $tableName = $this->getMainTable();
         $cols = [
-            'MAX(fl32_csp_rule_id)',
+            'MAX(csp_rule_id)',
         ];
         $select->from($tableName, $cols);
         $maxId = 0;
