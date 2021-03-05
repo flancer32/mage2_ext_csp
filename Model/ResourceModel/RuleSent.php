@@ -13,7 +13,7 @@ class RuleSent extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      */
     protected function _construct()
     {
-        $this->_init('csp_rule_sent', 'csp_rule_sent_id');
+        $this->_init('fl32_csp_rule_sent', 'csp_rule_sent_id');
     }
 
     /**
