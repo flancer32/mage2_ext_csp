@@ -37,6 +37,15 @@
                         fl32:csp:analyze
                     </tooltip>
                 </field>
+                <field id="developer_email_csv" type="text"
+                       showInDefault="0" showInWebsite="0" showInStore="0">
+                </field>
+                <field id="report_email_from" type="text"
+                       showInDefault="0" showInWebsite="0" showInStore="0">
+                </field>
+                <field id="report_email_from_clear_name" type="text"
+                       showInDefault="0" showInWebsite="0" showInStore="0">
+                </field>
                 <depends>
                     <field id="fl32_csp/general/enabled">1</field>
                 </depends>
