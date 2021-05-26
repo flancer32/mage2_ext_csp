@@ -37,6 +37,21 @@
                         fl32:csp:analyze
                     </tooltip>
                 </field>
+                <field id="developer_email_csv" type="text" translate="label comment" sortOrder="200"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Report to Receptients</label>
+                    <comment>Email addresses to which the CSP will report new rules, separate using comma (,)</comment>
+                </field>
+                <field id="report_email_from" type="text" translate="label comment" sortOrder="300"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Report from</label>
+                    <comment>Email address from which the CSP reports will be sent</comment>
+                </field>
+                <field id="report_email_from_clear_name" type="text" translate="label comment" sortOrder="400"
+                       showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Report from clear name</label>
+                    <comment>Clear name for sender</comment>
+                </field>
                 <depends>
                     <field id="fl32_csp/general/enabled">1</field>
                 </depends>
@@ -60,21 +75,6 @@
                     <depends>
                         <field id="fl32_csp/reports/developer_only">1</field>
                     </depends>
-                </field>
-                <field id="developer_email_csv" type="text" translate="label comment"
-                       showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Report to Receptients</label>
-                    <comment>Email addresses to which the CSP reports will be sent, separate using comma (,)</comment>
-                </field>
-                <field id="report_email_from" type="text"
-                       showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Report from</label>
-                    <comment>Email address from which the CSP reports will be sent</comment>
-                </field>
-                <field id="report_email_from_clear_name" type="text"
-                       showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Report from clear name</label>
-                    <comment>Clear Name for Report From</comment>
                 </field>
                 <depends>
                     <field id="fl32_csp/general/enabled">1</field>

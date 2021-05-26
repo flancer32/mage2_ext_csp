@@ -88,7 +88,7 @@ class SendEmail
      */
     private function getMailRecipients(): array
     {
-        $recipientsSerialized = $this->scopeConfig->getValue('fl32_csp/reports/developer_email_csv');
+        $recipientsSerialized = $this->scopeConfig->getValue('fl32_csp/cron/developer_email_csv');
         if (!$recipientsSerialized) {
             throw new EmailSendException('aborted due to missing recepients');
         }
@@ -98,7 +98,7 @@ class SendEmail
 
     private function getMailSenderAddress(): string
     {
-        $mailSenderAddress = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from');
+        $mailSenderAddress = $this->scopeConfig->getValue('fl32_csp/cron/report_email_from');
         if (!$mailSenderAddress) {
             throw new EmailSendException('aborted due to missing email sender address');
         }
@@ -107,7 +107,7 @@ class SendEmail
 
     private function getMailSenderClearName(): string
     {
-        $mailSenderClearName = $this->scopeConfig->getValue('fl32_csp/reports/report_email_from_clear_name');
+        $mailSenderClearName = $this->scopeConfig->getValue('fl32_csp/cron/report_email_from_clear_name');
         if (!$mailSenderClearName) {
             $mailSenderClearName = $this->getMailSenderAddress();
         }
