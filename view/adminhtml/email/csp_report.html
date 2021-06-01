@@ -1,0 +1,16 @@
+<!--@subject {{trans "CSP Report"}} @-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name",
+"var data.telephone":"Sender Telephone",
+"var data.company":"Sender Company"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<div>
+    {{var body|raw}}
+</div>
+
+{{template config_path="design/email/footer_template"}}

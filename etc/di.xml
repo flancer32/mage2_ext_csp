@@ -19,6 +19,7 @@
         <arguments>
             <argument name="commands" xsi:type="array">
                 <item name="fl32_csp_analyze" xsi:type="object">Flancer32\Csp\Cli\Analyze</item>
+                <item name="fl32_csp_report_new_rules" xsi:type="object">Flancer32\Csp\Cli\SendReports</item>
             </argument>
         </arguments>
     </type>
@@ -42,5 +43,17 @@
             </argument>
         </arguments>
     </type>
+
+    <!-- ******************** -->
+    <!-- email reporting protocol -->
+    <!-- ******************** -->
+
+
+    <preference for="Flancer32\Csp\Api\ReportsSentRepositoryInterface" type="Flancer32\Csp\Model\ReportsSentRepository"/>
+    <preference for="Flancer32\Csp\Api\Data\ReportsSentInterface" type="Flancer32\Csp\Model\Data\ReportsSent"/>
+    <preference for="Flancer32\Csp\Api\Data\ReportsSentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="Flancer32\Csp\Api\RuleSentRepositoryInterface" type="Flancer32\Csp\Model\RuleSentRepository"/>
+    <preference for="Flancer32\Csp\Api\Data\RuleSentInterface" type="Flancer32\Csp\Model\Data\RuleSent"/>
+    <preference for="Flancer32\Csp\Api\Data\RuleSentSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
 
 </config>
