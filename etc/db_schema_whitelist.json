@@ -46,5 +46,16 @@
             "FL32_CSP_RULE_TYPE_ID_FL32_CSP_TYPE_POLICY_ID": true,
             "FL32_CSP_RULE_ADMIN_AREA_TYPE_ID_SOURCE": true
         }
+    },
+    "fl32_csp_rule_sent": {
+        "column": {
+            "csp_rule_sent_id": true,
+            "csp_rule_id": true,
+            "csp_rule_sent_to": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FL32_CSP_RULE_SENT_CSP_RULE_ID_FL32_CSP_RULE_ID": true
+        }
     }
 }
