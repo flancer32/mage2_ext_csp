@@ -61,6 +61,10 @@
                         <field id="fl32_csp/reports/developer_only">1</field>
                     </depends>
                 </field>
+                <field id="your_ip" translate="label comment" type="text" sortOrder="201" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Your IP Address</label>
+                    <frontend_model>Flancer32\Csp\Block\Adminhtml\System\Config\Form\Field\DeveloperIps</frontend_model>
+                </field>
                 <depends>
                     <field id="fl32_csp/general/enabled">1</field>
                 </depends>
