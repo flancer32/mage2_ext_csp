@@ -39,7 +39,8 @@
             "enabled": true,
             "admin_area": true,
             "type_id": true,
-            "source": true
+            "source": true,
+            "reason": true
         },
         "constraint": {
             "PRIMARY": true,

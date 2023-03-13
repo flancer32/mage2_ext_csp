@@ -21,6 +21,7 @@ class Grid
     const A_ID = 'Id';
     const A_POLICY_ID = 'PolicyId';
     const A_SOURCE = 'Source';
+    const A_REASON = 'Reason';
 
     /** Entities are used in the query (table names w/o prefix) */
     const E_RULE = \Flancer32\Csp\Api\Repo\Dao\Rule::ENTITY_NAME;
@@ -36,7 +37,8 @@ class Grid
                 self::A_ENABLED => $this->createAliasMapEntry(self::A_ENABLED, self::AS_RULE, ERule::ENABLED),
                 self::A_ID => $this->createAliasMapEntry(self::A_ID, self::AS_RULE, ERule::ID),
                 self::A_POLICY_ID => $this->createAliasMapEntry(self::A_POLICY_ID, self::AS_RULE, ERule::TYPE_ID),
-                self::A_SOURCE => $this->createAliasMapEntry(self::A_SOURCE, self::AS_RULE, ERule::SOURCE)
+                self::A_SOURCE => $this->createAliasMapEntry(self::A_SOURCE, self::AS_RULE, ERule::SOURCE),
+                self::A_REASON => $this->createAliasMapEntry(self::A_REASON, self::AS_RULE, ERule::REASON)
             ];
         }
         return $this->mapAliases;
@@ -77,7 +79,8 @@ class Grid
             self::A_AREA => ERule::ADMIN_AREA,
             self::A_ENABLED => ERule::ENABLED,
             self::A_POLICY_ID => ERule::TYPE_ID,
-            self::A_SOURCE => ERule::SOURCE
+            self::A_SOURCE => ERule::SOURCE,
+            self::A_REASON => ERule::REASON
         ];
         $result->from([self::AS_RULE => $tbl], $cols);
 

@@ -18,6 +18,7 @@ class Rule
     const ID = 'id';
     const SOURCE = 'source';
     const TYPE_ID = 'type_id';
+    const REASON = 'reason';
 
     /** @return boolean */
     public function getAdminArea()
@@ -58,6 +59,15 @@ class Rule
     public function getTypeId()
     {
         $result = (int)parent::getData(self::TYPE_ID);
+        return $result;
+    }
+
+    /**
+     * @return string
+     */
+    public function getReason()
+    {
+        $result = parent::getData(self::REASON);
         return $result;
     }
 
@@ -113,5 +123,14 @@ class Rule
     public function setTypeId($data)
     {
         parent::setData(self::TYPE_ID, $data);
+    }
+
+    /**
+     * @param string $data
+     * @return void
+     */
+    public function setReason($data)
+    {
+        parent::setData(self::REASON, $data);
     }
 }
