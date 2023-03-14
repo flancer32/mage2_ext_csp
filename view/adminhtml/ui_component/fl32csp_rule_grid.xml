@@ -90,7 +90,7 @@
 
         <column name="Source">
             <settings>
-                <dataType>text</dataType>
+                <dataType>date</dataType>
                 <filter>text</filter>
                 <label translate="true">Source</label>
             </settings>
@@ -98,7 +98,7 @@
 
         <column name="Reason">
             <settings>
-                <dataType>date</dataType>
+                <dataType>text</dataType>
                 <filter>text</filter>
                 <label translate="true">Reason</label>
             </settings>
