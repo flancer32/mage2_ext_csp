@@ -29,6 +29,8 @@
                 comment="Policy type ID."/>
         <column name="source" xsi:type="varchar" nullable="false"
                 comment="Source value (schema, URL, hash, ...)."/>
+        <column name="reason" xsi:type="varchar" nullable="true"
+                comment="Reason for enabled/disabled rule"/>
         <constraint referenceId="PRIMARY" xsi:type="primary">
             <column name="id"/>
         </constraint>
