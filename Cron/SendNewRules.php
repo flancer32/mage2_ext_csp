@@ -33,7 +33,7 @@ class SendNewRules
      */
     public function execute()
     {
-        $this->logger->addInfo("Cronjob SendReportsAndRules is executed.");
+        $this->logger->info("Cronjob SendReportsAndRules is executed.");
         $this->reportNewRules->execute();
     }
 
