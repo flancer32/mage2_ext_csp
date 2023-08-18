@@ -28,7 +28,7 @@ class Policy
                 $this->cache[] = ['value' => $one->getId(), 'label' => $one->getKey()];
             }
             usort($this->cache, function ($a, $b) {
-                return $a['label'] > $b['label'];
+                return strcasecmp($a['label'], $b['label']);
             });
         }
         return $this->cache;
